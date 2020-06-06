@@ -1,0 +1,27 @@
++1: MNR (Max. number of reviews written in a day)
+
++1: PR (Ratio of positive reviews)
+
++1: NR (Ratio of negative reviews)
+
++1: avgRD (Avg. rating deviation of product's reviews)
+
+#+1: WRD (Weighted rating deviation where reviews are weighed by recency; see Table 2 in SpEagle for more details)
+
+-1: ERD (Entropy of rating distribution of product's reviews)
+
+-1: ETG (Entropy of temporal gap's in days between consecutive pairs)
+
++1: BST (Burstiness; see Table 2 for more details)
+
+#-1: Rank (Rank order among all reviews of product)
+
++1: RD (Absolute rating deviation from product's average rating)
+
++1: EXT (Extremity of rating: =1 for ratings {4, 5}, 0 otherwise for {1, 2, 3})
+
++1: DEV (Threshold rating deviation of review; see Table 2 in SpEagle for more details)
+
++1: ETF (Early time frame - spammers often review early to increase impact; see Table 2 for more details on the formula)
+
++1: ISR (Is singleton? If review is user's sole review, then x_{ISR} = 1, otherwise 0
