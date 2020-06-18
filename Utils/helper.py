@@ -1,12 +1,13 @@
 from sklearn.metrics import average_precision_score
 from sklearn.metrics import roc_auc_score
+import gzip
+import numpy as np
 
 
 def create_ground_truth(user_data):
 	"""Given user data, return a dictionary of labels of users and reviews
 	Args:
 		user_data: key = user_id, value = list of review tuples.
-
 	Return:
 		user_ground_truth: key = user id (not prefixed), value = 0 (non-spam) /1 (spam)
 		review_ground_truth: review id (not prefixed), value = 0 (non-spam) /1 (spam)
@@ -37,7 +38,6 @@ def evaluate(y, pred_y):
 	Evaluate the prediction of account and review by SpEagle
 	Args:
 		y: dictionary with key = user_id/review_id and value = ground truth (1 means spam, 0 means non-spam)
-
 		pred_y: dictionary with key = user_id/review_id and value = p(y=spam | x) produced by SpEagle.
 				the keys in pred_y must be a subset of the keys in y
 	"""
@@ -49,8 +49,6 @@ def evaluate(y, pred_y):
 			posteriors.append(v)
 			ground_truth.append(y[k])
 
-	#     print ('number of test reviews: %d' % len(review_ground_truth))
-	#     print ('number of test users: %d' % len(user_ground_truth))
 
 	auc = roc_auc_score(ground_truth, posteriors)
 	ap = average_precision_score(ground_truth, posteriors)
@@ -73,9 +71,9 @@ def scale_value(value_dict):
 	for i, p in value_dict.items():
 		norm_value = (p - up_min) / (up_max - up_min)
 
-		if norm_value == 0: # avoid the 0
+		if norm_value == 0:  # avoid the 0
 			scale_dict[i] = 0 + 1e-7
-		elif norm_value == 1: # avoid the 1
+		elif norm_value == 1:  # avoid the 1
 			scale_dict[i] = 1 - 1e-7
 		else:
 			scale_dict[i] = norm_value
@@ -110,3 +108,80 @@ def nor_priors(priors):
 		priors[2][i] = (p - p_min) / (p_max - p_min)
 
 	return priors, [u_mean, r_mean, p_mean]
+
+
+def read_graph_data(metadata_filename, adj=False):
+	""" Read the user-review-product graph from file. Can output the graph in different formats
+		Args:
+			metadata_filename: a gzipped file containing the graph.
+			adj: if True: create adjacent data, default is False
+		Return:
+			graph: user-review / prod-review / list of adjacent(adj=True)
+	"""
+
+	user_data = {}
+
+	prod_data = {}
+
+	adj_data = []
+
+	# use the rt mode to read ascii strings instead of binary
+	if adj is False:
+		with gzip.open(metadata_filename, 'rt') as f:
+			# file format: each line is a tuple (user id, product id, rating, label, date)
+			for line in f:
+				items = line.strip().split()
+				u_id = items[0]
+				p_id = items[1]
+				rating = float(items[2])
+				label = int(items[3])
+				date = items[4]
+
+				if u_id not in user_data:
+					user_data[u_id] = []
+				user_data[u_id].append((p_id, rating, label, date))
+
+				if p_id not in prod_data:
+					prod_data[p_id] = []
+				prod_data[p_id].append((u_id, rating, label, date))
+
+				# create adj_list [u_id, p_id, 1/2], where 1 indicates positive rating (4, 5)
+				# and 2 indicates negative rating (1, 2, 3)
+
+		print('read reviews from %s' % metadata_filename)
+		print('number of users = %d' % len(user_data))
+		print('number of products = %d' % len(prod_data))
+		return user_data, prod_data
+	else:
+		# create adj_list [u_id, p_id, 1/2], where 1 indicates positive rating (4, 5)
+		# and 2 indicates negative rating (1, 2, 3)
+		with gzip.open(metadata_filename, 'rt') as f:
+			# file format: each line is a tuple (user id, product id, rating, label, date)
+			for line in f:
+				items = line.strip().split()
+				u_id = items[0]
+				p_id = items[1]
+				rating = float(items[2])
+				label = int(items[3])
+				date = items[4]
+
+				if u_id not in user_data:
+					user_data[u_id] = []
+				user_data[u_id].append((p_id, rating, label, date))
+
+				if p_id not in prod_data:
+					prod_data[p_id] = []
+				prod_data[p_id].append((u_id, rating, label, date))
+
+				if int(rating) <= 3:
+					rating = int(2)
+				else:
+					rating = int(1)
+				adj_data.append([u_id, p_id, rating])
+
+		print('read reviews from %s' % metadata_filename)
+		print('number of users = %d' % len(user_data))
+		print('number of products = %d' % len(prod_data))
+		print('number of ratings = %d' % len(adj_data))
+		return user_data, prod_data, np.array(adj_data, dtype='int32')
+

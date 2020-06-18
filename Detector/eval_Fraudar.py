@@ -1,10 +1,7 @@
-import numpy as np
-from sklearn.metrics import auc
-
-from Utils.eval_helper import *
-from Utils.iohelper import *
+from Utils.helper import *
 from Utils.yelpFeatureExtraction import *
 from Detector.greedy import *
+import pickle as pkl
 
 
 def listToSparseMatrix(edgesSource, edgesDest):
@@ -76,8 +73,6 @@ def runFraudar(new_priors, user_product_graph):
 	min_den = res[-1][1]
 	den_interval = max_den - min_den
 
-	# print('number of detected_users: %d' % len(detected_users))
-
 	ranked_rpriors = [(review, new_rpriors[review]) for review in new_rpriors.keys()]
 	ranked_rpriors = sorted(ranked_rpriors, reverse=True, key=lambda x: x[1])
 	r_max, r_mean, r_min = ranked_rpriors[0][1], ranked_rpriors[int(len(ranked_rpriors) / 2)][1], ranked_rpriors[-1][1]
@@ -109,26 +104,16 @@ def runFraudar(new_priors, user_product_graph):
 if __name__ == '__main__':
 
 	dataset_name = 'YelpChi'
-	prefix = 'Yelp_Dataset/' + dataset_name + '/'
+	prefix = '../Yelp_Dataset/' + dataset_name + '/'
 	metadata_filename = prefix + 'metadata.gz'
 
 	# load graph
 	user_product_graph, product_user_graph = read_graph_data(metadata_filename)
 	user_ground_truth, review_ground_truth = create_ground_truth(user_product_graph)
 
-	# feature and prior calculation
-	feature_suspicious_filename = 'Utils/feature_configuration.txt'
-	review_feature_list = ['RD', 'EXT', 'EXT', 'DEV', 'ETF', 'ISR']
-	user_feature_list = ['MNR', 'PR', 'NR', 'avgRD', 'BST', 'ERD', 'ETG']
-	product_feature_list = ['MNR', 'PR', 'NR', 'avgRD', 'ERD', 'ETG']
-	feature_config = load_feature_config(feature_suspicious_filename)
-	feature_extractor = FeatureExtractor()
-	UserFeatures, ProdFeatures, ReviewFeatures = feature_extractor.construct_all_features(user_product_graph,
-																						  product_user_graph)
-	upriors = feature_extractor.calculateNodePriors(user_feature_list, UserFeatures, feature_config)
-	ppriors = feature_extractor.calculateNodePriors(product_feature_list, ProdFeatures, feature_config)
-	rpriors = feature_extractor.calculateNodePriors(review_feature_list, ReviewFeatures, feature_config)
-	priors = [upriors, rpriors, ppriors]
+	# load priors
+	with open(prefix + 'priors.pkl', 'rb') as f:
+		priors = pkl.load(f)
 
 	# run Fraudar on the reviews
 	userBelief, reviewBelief = runFraudar(priors, user_product_graph)

@@ -8,7 +8,7 @@ from scipy.sparse import lil_matrix
 import matplotlib.pyplot as plt
 import numpy as np
 
-from Utils.eval_helper import *
+from Utils.helper import *
 from Utils.iohelper import *
 from Utils.yelpFeatureExtraction import *
 
@@ -147,7 +147,7 @@ class GANG:
 		u_post = {}
 		p_post = {}
 		r_post = {}
-		pu_post = self.res_pu_spam_post_vector#/(self.res_pu_benign_post_vector + self.res_pu_spam_post_vector)
+		pu_post = self.res_pu_spam_post_vector
 		no_prod = len(self.p_priors)
 		# extract the posterior belief of users and reviews
 		for i, r in enumerate(pu_post[no_prod:]):

@@ -1,14 +1,6 @@
-
-from math import *
-import numpy as np
-import pickle as pkl
-import sys
-sys.path.insert(0, sys.path[0] + '/..')
-
-from Utils.iohelper import *
-from Utils.yelpFeatureExtraction import *
-from Utils.eval_helper import *
+from Utils.helper import *
 from Detector.fBox import *
+import pickle as pkl
 
 
 def runfBox(new_priors, user_product_graph):
@@ -77,6 +69,7 @@ if __name__ == '__main__':
 		priors = pkl.load(f)
 
 	userBelief, reviewBelief = runfBox(priors, user_product_graph)
+	print(reviewBelief)
 	reviewBelief = scale_value(reviewBelief)
 
 	review_AUC, review_AP = evaluate(review_ground_truth, reviewBelief)

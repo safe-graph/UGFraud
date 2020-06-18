@@ -258,7 +258,7 @@ class Node(object):
 
 class SpEagle():
 
-	def __init__(self, user_product_graph, priors, potentials, message = None, max_iters=1):
+	def __init__(self, user_product_graph, priors, potentials, message=None, max_iters=1):
 		""" set up the data and parameters.
 
 		Args:
@@ -547,22 +547,6 @@ class SpEagle():
 			# from log scale to prob scale and normalize to prob distribution
 			posterior_med = np.exp(belief)
 			posterior = posterior_med / np.sum(posterior_med)
-
-			# if k == 'u1399':
-			#     print('u1399')
-			#     print(belief)
-			#     print(posterior_med)
-			#     print(np.sum(posterior_med))
-			#     print(posterior)
-
-
-			# if k == 'u6426':
-			#     print('u6426')
-			#     print(belief)
-			#     print(posterior_med)
-			#     print(np.sum(posterior_med))
-			#     print(posterior)
-
 
 			if node_type == 'review':
 				reviewBelief[review_id] = posterior[1]
