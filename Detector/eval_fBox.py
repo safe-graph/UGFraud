@@ -9,16 +9,14 @@ def runfBox(new_priors, user_product_graph):
 	review_priors = new_priors[1]
 	prod_priors = new_priors[2]
 
-	# print('Start detection on the new graph with fBOX')
-
 	# run fBox
 	model = fBox(user_product_graph)
 	num_detected_users = []
 
-	################# important parameters
+	# important parameters
 	t = 20  # taus = [0.5, 1, 5, 10, 25, 50, 99]
 	k = 50  # k = range(10, 51, 10)
-	################# important parameters
+	# important parameters
 
 	detected_users_by_degree, detected_products_by_degree = model.run(t, k)
 	detected_users = set()

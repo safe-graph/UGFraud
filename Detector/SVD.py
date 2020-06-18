@@ -131,8 +131,5 @@ class SVD:
             j = j + 1
 
         probas_pred = self.classify(training_data_svm, training_labels_svm, testing_data_svm, testing_labels_svm)
-        result = [find_testing_uid, probas_pred[:,0]]
+        result = [find_testing_uid, probas_pred[:, 0]]
         return result
-
-
-

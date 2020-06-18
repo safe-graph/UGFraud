@@ -1,5 +1,4 @@
 from Utils.helper import *
-from Utils.yelpFeatureExtraction import *
 from Detector.greedy import *
 import pickle as pkl
 

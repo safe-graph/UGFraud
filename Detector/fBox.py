@@ -63,8 +63,6 @@ class fBox():
 		self.out_deg = np.array(out_deg).reshape(-1, )
 		self.unique_out_deg = np.unique(self.out_deg)
 
-		# print ('unique number of out degrees %d' % self.unique_out_deg.shape[0])
-
 		# store the indices of suspicious users
 		suspicious_users = {}
 		thresholds = {}
@@ -86,8 +84,6 @@ class fBox():
 		in_deg = self.matrix.sum(axis=0)
 		self.in_deg = np.array(in_deg).reshape(-1, )
 		self.unique_in_deg = np.unique(self.in_deg)
-
-		# print ('unique number of in degrees %d' % self.unique_in_deg.shape[0])
 
 		# store the indices of suspicious users
 		suspicious_products = {}

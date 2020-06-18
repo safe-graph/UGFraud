@@ -1,5 +1,4 @@
 from Detector.gang import *
-from Utils.yelpFeatureExtraction import *
 import pickle as pkl
 
 

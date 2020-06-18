@@ -1,16 +1,9 @@
 """
 	Implement GANG on a User-Review-Product graph.
 """
-
-import random
-import time
 from scipy.sparse import lil_matrix
-import matplotlib.pyplot as plt
-import numpy as np
-
 from Utils.helper import *
-from Utils.iohelper import *
-from Utils.yelpFeatureExtraction import *
+import random
 
 
 def semi_data(ground_truth, portion):

@@ -2,21 +2,14 @@
 # use aveDegree or sqrtWeightedAveDegree or logWeightedAveDegree on a sparse matrix,
 # which returns ((rowSet, colSet), score) for the most suspicious block.
 
-from __future__ import division
-import random
-from scipy import sparse
-import numpy as np
-
 from Detector.MinTree import MinTree
-
-
-
-# np.set_printoptions(threshold='nan')
-# np.set_printoptions(linewidth=160)
+from __future__ import division
+from scipy import sparse
+import random
+import numpy as np
 
 
 # given a list of lists where each row is an edge, this returns the sparse matrix representation of the data.
-# @profile
 def listToSparseMatrix(edgesSource, edgesDest):
 	m = max(edgesSource) + 1
 	n = max(edgesDest) + 1
@@ -26,10 +19,7 @@ def listToSparseMatrix(edgesSource, edgesDest):
 
 
 # reads matrix from file and returns sparse matrix. first 2 columns should be row and column indices
-# of ones.
-# @profile
 def readData(filename):
-	# dat = np.genfromtxt(filename, delimiter='\t', dtype=int)
 	edgesSource = []
 	edgesDest = []
 	with open(filename) as f:
@@ -205,21 +195,16 @@ def fastGreedyDecreasing(M, colWeights):
 	curScore = c2Score(M, rowSet, colSet)
 	bestAveScore = curScore / (len(rowSet) + len(colSet))
 	bestSets = (rowSet, colSet)
-	# print("finished setting up greedy")
 	rowDeltas = np.squeeze(M.sum(axis=1).A)  # *decrease* in total weight when *removing* this row
 	colDeltas = np.squeeze(M.sum(axis=0).A)
-	# print("finished setting deltas")
 	rowTree = MinTree(rowDeltas)
 	colTree = MinTree(colDeltas)
-	# print ("finished building min trees")
 
 	numDeleted = 0
 	deleted = []
 	bestNumDeleted = 0
 
 	while rowSet and colSet:
-		# if (len(colSet) + len(rowSet)) % 100000 == 0:
-		# 	print("current set size = " + str(len(colSet) + len(rowSet)))
 		nextRow, rowDelt = rowTree.getMin()
 		nextCol, colDelt = colTree.getMin()
 		if rowDelt <= colDelt:

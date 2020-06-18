@@ -1,6 +1,7 @@
 from Utils.helper import *
 from Detector.SVD import *
 import sys
+import pickle as pkl
 import os
 sys.path.insert(0, os.path.abspath('../'))
 
@@ -26,17 +27,9 @@ if __name__ == '__main__':
     user_product_graph, product_user_graph = read_graph_data(metadata_filename)
     user_ground_truth, review_ground_truth = create_ground_truth(user_product_graph)
 
-    review_feature_list = ['RD', 'EXT', 'EXT', 'DEV', 'ETF', 'ISR']
-    user_feature_list = ['MNR', 'PR', 'NR', 'avgRD', 'BST', 'ERD', 'ETG']
-    product_feature_list = ['MNR', 'PR', 'NR', 'avgRD', 'ERD', 'ETG']
-    feature_config = load_feature_config('../Utils/feature_configuration.txt')
-    feature_extractor = FeatureExtractor()
-    UserFeatures, ProdFeatures, ReviewFeatures = feature_extractor.construct_all_features(user_product_graph,
-                                                                                          product_user_graph)
-    upriors = feature_extractor.calculateNodePriors(user_feature_list, UserFeatures, feature_config)
-    ppriors = feature_extractor.calculateNodePriors(product_feature_list, ProdFeatures, feature_config)
-    rpriors = feature_extractor.calculateNodePriors(review_feature_list, ReviewFeatures, feature_config)
-    priors = [upriors, rpriors, ppriors]
+    # load priors
+    with open(prefix + 'priors.pkl', 'rb') as f:
+        priors = pkl.load(f)
 
     percent = 0.9
     userBelief = runSVD(priors, user_product_graph, percent)

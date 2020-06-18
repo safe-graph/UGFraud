@@ -17,7 +17,6 @@ class MinTree:
         for i in reversed(range(self.numBranches)):
             self.nodes[i] = min(self.nodes[2 * i + 1], self.nodes[2 * i + 2])
 
-    # @profile
     def getMin(self):
         cur = 0
         for i in range(self.height):
@@ -25,7 +24,6 @@ class MinTree:
         # print "found min at %d: %d" % (cur, self.nodes[cur])
         return (cur - self.numBranches, self.nodes[cur])
 
-    # @profile
     def changeVal(self, idx, delta):
         cur = self.numBranches + idx
         self.nodes[cur] += delta

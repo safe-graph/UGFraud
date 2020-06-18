@@ -2,11 +2,10 @@
 	Implement SpEagle on a User-Review-Product graph.
 """
 
+from Utils.helper import *
 from heapq import *
-import numpy as np
 from scipy.special import logsumexp
-
-from Utils.iohelper import *
+import pickle
 
 
 class myTuple():
@@ -190,24 +189,9 @@ class Node(object):
 		# go through each neighbor of the node
 		for j, n_id in enumerate(self._neighbors):
 
-			# if self._name == ('u6426', 'p188'):
-			#     print("total:")
-			#     print(total)
-			#     print("incoming:")
-			#     print(incoming)
-			# retrieve the actual neighboring node
 			n = all_nodes[n_id]
-			# if self._name == ('u6426', 'p188'):
-			#     print("n:")
-			#     print(n)
 
-			# log phi_i + \sum_{k~j} log m_ki
 			log_m_i = total - incoming[j]
-
-			# if self._name == ('11144', '42'):
-			#     print("log_m_i:")
-			#     print(log_m_i)
-
 
 			# note that the potential matrix depends on the edge type (write(user, review) or belong(review, product))
 			# edge_type can be (user-review), (review-product), (review-user) and (product-review)
@@ -215,44 +199,19 @@ class Node(object):
 
 			# log H, where H is symmetric and there is no need to transpose it
 			log_H = potentials[edge_type]
-			# if self._name == ('u6426', 'p188'):
-			#     print("log_H:")
-			#     print(log_H)
-			# \sum_y log_H(x,y) + log phi_i + sum_{k~j} log m_ki(y)
-			log_m_ij = logsumexp(log_H + np.tile(log_m_i.transpose(), (2, 1)), axis=1)
 
-			# if self._name == ('u11144', 'p42'):
-			# 	print("log_m_ij:")
-			# 	print(log_m_ij)
+			log_m_ij = logsumexp(log_H + np.tile(log_m_i.transpose(), (2, 1)), axis=1)
 
 			# normalize the message
 			log_Z = logsumexp(log_H + np.tile(log_m_i.transpose(), (2, 1)))
 
 			log_m_ij -= log_Z#
 
-			# if self._name == ('u11144', 'p42'):
-			# 	print("nor_log_m_ij:")
-			# 	print(log_m_ij)
-
-
-			#print (log_m_ij)
-			# print(m_ij)
-
-			# if normalize:
-			#	m_ij /= m_ij.sum()
-
-			# print('message from %d to %d: ' % (self._name, n._name))
-			# print(m_ij)
-			# print()
-
 			# accumulate the difference
 			diff += np.sum(np.abs(self._outgoing[n._name] - log_m_ij))
 
 			# set the message from i to j
 			self._outgoing[n._name] = log_m_ij
-
-
-		# break
 		return diff
 
 
@@ -317,16 +276,6 @@ class SpEagle():
 						self._nodes[unique_p_id].add_local_neighbor(unique_review_id, message[unique_p_id])
 
 					self._nodes[unique_review_id] = review_node
-
-		# initialize the outgoing messages
-		#for node_id, node in self._nodes.items():
-			# if node_id == ('201', '0'):
-			#	print (node.get_neighbors())
-			# if node.get_name() == 'p0':
-			#	print ('encounter node 0')
-			# if node.get_name() == 'p0' and node.get_type() == 'p':
-			#	print ('initializing product 0 outgoing messages')
-		#    node.init_outgoing()
 
 	def add_new_data(self, new_user_product_graph, new_priors):
 		"""
@@ -602,9 +551,6 @@ if __name__ == '__main__':
 				  'r_p': review_product_potential, 'p_r': review_product_potential}
 
 	model = SpEagle(user_product_graph, [user_priors, prod_priors, review_priors], potentials, max_iters=100)
-	# model.output_graph()
 	model.schedule()
 	model.run_bp()
-# predictions = model.classify()
-# with open(prediction_filename, 'wb') as f:
-#	pickle.dump(predictions, f)
+

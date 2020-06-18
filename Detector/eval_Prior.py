@@ -1,5 +1,4 @@
 from Utils.helper import *
-from Utils.yelpFeatureExtraction import *
 import pickle as pkl
 
 if __name__ == '__main__':
