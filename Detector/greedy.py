@@ -2,8 +2,8 @@
 # use aveDegree or sqrtWeightedAveDegree or logWeightedAveDegree on a sparse matrix,
 # which returns ((rowSet, colSet), score) for the most suspicious block.
 
-from Detector.MinTree import MinTree
 from __future__ import division
+from Detector.MinTree import MinTree
 from scipy import sparse
 import random
 import numpy as np
