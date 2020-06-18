@@ -1,7 +1,7 @@
 from Utils.helper import *
 from Detector.greedy import *
 import pickle as pkl
-
+import copy as cp
 
 def listToSparseMatrix(edgesSource, edgesDest):
 	m = max(edgesSource) + 1
