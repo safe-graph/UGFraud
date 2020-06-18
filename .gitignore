@@ -1,3 +1,10 @@
+*.ipynb
+Detector/*.ipynb
 
-*.pyc
-*.pyc
+# Testing Files
+SVD
+Detector/SVD
+Detector/ZooBP
+Detector/__pycache__
+Utils/iohelper.py
+Utils/__pycache__
