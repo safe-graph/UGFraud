@@ -55,6 +55,8 @@ if __name__ == '__main__':
 	with open(prefix + 'priors.pkl', 'rb') as f:
 		priors = pkl.load(f)
 
+	# input parameters: numerical_eps, eps, num_iters, stop_threshold
+
 	model = runSpEagle(priors, user_product_graph)
 	userBelief, reviewBelief, _ = model.classify()
 

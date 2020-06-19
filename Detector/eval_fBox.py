@@ -38,7 +38,7 @@ def runfBox(new_priors, user_product_graph):
 		if u in detected_users:
 			user_prob.update({u: user_priors.get(u)})
 		else:
-			user_prob.update({u: 0.0000001})
+			user_prob.update({u: 1e-7})
 
 	for user_id, reviews in user_product_graph.items():
 		for r in reviews:
@@ -66,8 +66,10 @@ if __name__ == '__main__':
 	with open(prefix + 'priors.pkl', 'rb') as f:
 		priors = pkl.load(f)
 
+	# input parameters: tau (t), k
+
 	userBelief, reviewBelief = runfBox(priors, user_product_graph)
-	print(reviewBelief)
+	
 	reviewBelief = scale_value(reviewBelief)
 
 	review_AUC, review_AP = evaluate(review_ground_truth, reviewBelief)

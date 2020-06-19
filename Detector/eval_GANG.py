@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, sys.path[0] + '/..')
 from Detector.gang import *
 import pickle as pkl
 
@@ -36,6 +38,8 @@ if __name__ == '__main__':
 	model, priors = runGANG(priors, user_product_graph, product_user_graph, user_ground_truth)
 	userBelief, _, reviewBelief = model.classify()
 	reviewBelief = scale_value(reviewBelief)
+
+	# input parameters: num_iters, stop_threshold
 
 	review_AUC, review_AP = evaluate(review_ground_truth, reviewBelief)
 	print('review AUC = {}'.format(review_AUC))

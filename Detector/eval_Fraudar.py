@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, sys.path[0] + '/..')
 from Utils.helper import *
 from Detector.greedy import *
 import pickle as pkl
@@ -11,7 +13,7 @@ def listToSparseMatrix(edgesSource, edgesDest):
 	return M1.astype('int')
 
 
-def runFraudar(new_priors, user_product_graph):
+def runFraudar(new_priors, user_product_graph, multiple=0):
 
 	new_upriors, new_rpriors, new_ppriors = new_priors
 
@@ -54,7 +56,12 @@ def runFraudar(new_priors, user_product_graph):
 	M = listToSparseMatrix(edgesSource, edgesDest)
 	# print("finished reading data ")
 
-	res = detect_blocks(M, logWeightedAveDegree)
+	if multiple == 0:
+		# detect all dense blocks 
+		res = detect_blocks(M, logWeightedAveDegree)
+	else:
+		# detect the top #multiple dense blocks
+		res = detectMultiple(M, logWeightedAveDegree, multiple)
 
 	detected_users = {}
 	weight_dict = {}
@@ -84,14 +91,14 @@ def runFraudar(new_priors, user_product_graph):
 		if u in detected_users.keys():
 			user_density[u] = (detected_users[u] - min_den) / den_interval
 		else:
-			user_density[u] = 0.000001
+			user_density[u] = 1e-7
 
 	user_prob = {}
 	review_prob = {}
 
 	for review in new_rpriors.keys():
-		review_prob.update({review: 0.000001})
-		user_prob.update({review[0]: 0.000001})
+		review_prob.update({review: 1e-7})
+		user_prob.update({review[0]: 1e-7})
 	for user in detected_users.keys():
 		user_prob.update({user: user_density[user]})
 		for review in user_product_graph[user]:
@@ -114,8 +121,10 @@ if __name__ == '__main__':
 	with open(prefix + 'priors.pkl', 'rb') as f:
 		priors = pkl.load(f)
 
+	# parameters: multiple
+
 	# run Fraudar on the reviews
-	userBelief, reviewBelief = runFraudar(priors, user_product_graph)
+	userBelief, reviewBelief = runFraudar(priors, user_product_graph, multiple=15)
 	reviewBelief = scale_value(reviewBelief)
 
 	review_AUC, review_AP = evaluate(review_ground_truth, reviewBelief)

@@ -1,9 +1,9 @@
+import sys
+sys.path.insert(0, sys.path[0] + '/..')
 from Utils.helper import *
 from Detector.ZooBP import *
 import pickle as pkl
-import sys
-import os
-sys.path.insert(0, os.path.abspath('../'))
+
 
 
 def runZooBP(priors, adj_list, ep):
