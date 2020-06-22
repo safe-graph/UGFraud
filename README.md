@@ -125,7 +125,7 @@ The repository is organized as follows:
 
 ## Model Comparison
 | Model  | Application  | Graph Type  |
-|-------|--------|--------|--------|
+|-------|--------|--------|
 | **SpEagle** | Review Spam | Tripartite  |
 | **GANG** | Social Sybil  | Bipartite |
 | **fBox** | Social Fraudster  | Bipartite | 
