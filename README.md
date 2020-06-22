@@ -24,16 +24,18 @@
 <p>An Unsupervised Graph-based Toolbox for Fraud Detection
 </h3>
 
-Introduction: 
+**Introduction:** 
+
+
 
 We welcome contributions on adding new fraud detectors and extending the features of the toolbox. Some of the planned features are listed in [TODO list](#todo-list). 
 
-If you use the toolbox in your project, please cite the [paper](https://arxiv.org/abs/2005.00625) below and the [algorithms](#implemented-models) you used :
-```
-@inproceedings{liu2020alleviating,
-  title={Alleviating the Inconsistency Problem of Applying Graph Neural Network to Fraud Detection},
-  author={Liu, Zhiwei and Dou, Yingtong and Yu, Philip S. and Deng, Yutong and Peng, Hao},
-  booktitle={Proceedings of the 43nd International ACM SIGIR Conference on Research and Development in Information Retrieval},
+If you use the toolbox in your project, please cite the [paper](https://arxiv.org/abs/2006.06069) below and the [algorithms](#implemented-models) you used :
+```bibtex
+@inproceedings{dou2020robust,
+  title={Robust Spammer Detection by Nash Reinforcement Learning},
+  author={Dou, Yingtong and Ma, Guixiang and Yu, Philip S and Xie, Sihong},
+  booktitle={Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery \& Data Mining},
   year={2020}
 }
 ```
@@ -71,17 +73,7 @@ python setup.py install
 ```
 ### Dataset
 
-#### DBLP
-We uses the pre-processed DBLP dataset from [Jhy1993/HAN](https://github.com/Jhy1993/HAN)
-You can run the FdGars, Player2Vec, GeniePath and GEM based on the DBLP dataset.
-Unzip the archive before using the dataset:
-```bash
-cd dataset
-unzip DBLP4057_GAT_with_idx_tra200_val_800.zip
-```
 
-#### Example dataset
-We implement example graphs for SemiGNN, GAS and GEM in `data_loader.py`. Because those models require unique graph structures or node types, which cannot be found in opensource datasets.
 
 
 ## User Guide
@@ -122,38 +114,30 @@ The repository is organized as follows:
 
 | Model  | Paper  | Venue  | Reference  |
 |-------|--------|--------|--------|
-| **SpEagle** | [A Semi-supervised Graph Attentive Network for Financial Fraud Detection](https://ieeexplore.ieee.org/abstract/document/8970829)  | ICDM 2019  | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/semignn.txt) |
-| **GANG** | [Key Player Identification in Underground Forums over Attributed Heterogeneous Information Network Embedding Framework](http://mason.gmu.edu/~lzhao9/materials/papers/lp0110-zhangA.pdf)  | CIKM 2019  | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/Player2Vec.txt)|
-| **fBox** | [Spam Review Detection with Graph Convolutional Networks](https://arxiv.org/abs/1908.10679)  | CIKM 2019 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/gas.txt) |
-| **Fraudar** | [FdGars: Fraudster Detection via Graph Convolutional Networks in Online App Review System](https://dl.acm.org/citation.cfm?id=3316586)  | WWW 2019 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/fdgars.txt) |
-| **ZooBP** | [GeniePath: Graph Neural Networks with Adaptive Receptive Paths](https://arxiv.org/abs/1802.00910)  | AAAI 2019 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/geniepath.txt)  |
-| **SVD** | [Heterogeneous Graph Neural Networks for Malicious Account Detection](https://dl.acm.org/citation.cfm?id=3272010)  | CIKM 2018 |[BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/gem.txt) |
-<!--| **HACUD** | [Cash-Out User Detection Based on Attributed Heterogeneous Information Network with a Hierarchical Attention Mechanism](https://aaai.org/ojs/index.php/AAAI/article/view/3884)  | AAAI 2019 |  Bibtex |-->
-<!--| **GraphConsis** | Alleviating the Inconsistency Problem of Applying Graph Neural Network to Fraud Detection  | SIGIR 2020  | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/graphconsis.txt) |-->
+| **SpEagle** | [Collective Opinion Spam Detection: Bridging Review Networks and Metadata](https://www.andrew.cmu.edu/user/lakoglu/pubs/15-kdd-collectiveopinionspam.pdf)  | KDD 2015  | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/speagle.txt) |
+| **GANG** | [GANG: Detecting Fraudulent Users in Online Social Networks via Guilt-by-Association on Directed Graph](https://ieeexplore.ieee.org/document/8215519)  | ICDM 2017  | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/gang.txt)|
+| **fBox** | [Spotting Suspicious Link Behavior with fBox: An Adversarial Perspective](https://arxiv.org/pdf/1410.3915.pdf)  | ICDM 2014 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/fbox.txt) |
+| **Fraudar** | [FRAUDAR: Bounding Graph Fraud in the Face of Camouflage](https://bhooi.github.io/papers/fraudar_kdd16.pdf)  | KDD 2016 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/fraudar.txt) |
+| **ZooBP** | [ZooBP: Belief Propagation for Heterogeneous Networks](http://www.vldb.org/pvldb/vol10/p625-eswaran.pdf)  | VLDB 2017 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/zoobp.txt)  |
+| **SVD** | [Singular value decomposition and least squares solutions](https://link.springer.com/content/pdf/10.1007/978-3-662-39778-7_10.pdf)  | - |[BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/svd.txt) |
+| **Prior** | Evaluating suspicioueness based on prior information  | - |  - |
+
 
 ## Model Comparison
-| Model  | Application  | Graph Type  | Base Model  |
+| Model  | Application  | Graph Type  |
 |-------|--------|--------|--------|
-| **SpEagle** | Financial Fraud  | Heterogeneous   | GAT, LINE, DeepWalk |
-| **GANG** | Cyber Criminal  | Heterogeneous | GAT, GCN|
-| **fBox** | Opinion Fraud  | Heterogeneous | GCN, GAT |
-| **Fraudar** |  Opinion Fraud | Homogeneous | GCN |
-| **ZooBP** | Financial Fraud | Homogeneous | GAT  |
-| **SVD** | Financial Fraud  | Heterogeneous |GCN |
+| **SpEagle** | Review Spam | Tripartite  |
+| **GANG** | Social Sybil  | Bipartite |
+| **fBox** | Social Fraudster  | Bipartite | 
+| **Fraudar** |  Social Fraudster | Bipartite |
+| **ZooBP** | E-commerce Fraud | Tripartite | 
+| **SVD** | Dimension Reduction  | Bipartite |
 <!--| **HACUD** |  |  |   |-->
 <!--| **GraphConsis** | Opinion Fraud  | Homogeneous   | GraphSAGE |-->
 
 ## TODO List
-- GraphConsis Implementation
-- Add preprocessed Yelp datasets
-- The memory-efficient implementation of SemiGNN
-- The log loss for GEM model
-- Time-based sampling for GEM
-- Add sampling methods
-- Benchmarking SOTA models
-- Scalable implementation
-- TensorFlow 2.0+ implementation
-- Pytorch version
+- Homogeneous graph implementation
+
 
 ## How to Contribute
-You are welcomed to contribute to this open-source toolbox. The detailed instructions will be released soon. Currently, you can create issues or send email to [ytongdou@gmail.com](mailto:ytongdou@gmail.com) for enquiry.
+You are welcomed to contribute to this open-source toolbox. Currently, you can create issues or send email to [ytongdou@gmail.com](mailto:ytongdou@gmail.com) for enquiry.
