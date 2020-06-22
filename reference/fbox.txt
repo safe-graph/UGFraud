@@ -1,0 +1,8 @@
+@inproceedings{shah2014spotting,
+  title={Spotting suspicious link behavior with fbox: An adversarial perspective},
+  author={Shah, Neil and Beutel, Alex and Gallagher, Brian and Faloutsos, Christos},
+  booktitle={2014 IEEE International Conference on Data Mining},
+  pages={959--964},
+  year={2014},
+  organization={IEEE}
+}

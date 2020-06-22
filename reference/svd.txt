@@ -1,0 +1,8 @@
+@incollection{golub1971singular,
+  title={Singular value decomposition and least squares solutions},
+  author={Golub, Gene H and Reinsch, Christian},
+  booktitle={Linear Algebra},
+  pages={134--151},
+  year={1971},
+  publisher={Springer}
+}

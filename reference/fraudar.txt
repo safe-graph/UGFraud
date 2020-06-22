@@ -1,0 +1,7 @@
+@inproceedings{hooi2016fraudar,
+  title={Fraudar: Bounding graph fraud in the face of camouflage},
+  author={Hooi, Bryan and Song, Hyun Ah and Beutel, Alex and Shah, Neil and Shin, Kijung and Faloutsos, Christos},
+  booktitle={Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining},
+  pages={895--904},
+  year={2016}
+}

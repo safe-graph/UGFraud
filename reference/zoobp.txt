@@ -1,0 +1,10 @@
+@article{eswaran2017zoobp,
+  title={Zoobp: Belief propagation for heterogeneous networks},
+  author={Eswaran, Dhivya and G{\"u}nnemann, Stephan and Faloutsos, Christos and Makhija, Disha and Kumar, Mohit},
+  journal={Proceedings of the VLDB Endowment},
+  volume={10},
+  number={5},
+  pages={625--636},
+  year={2017},
+  publisher={VLDB Endowment}
+}

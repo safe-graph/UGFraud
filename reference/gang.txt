@@ -1,0 +1,8 @@
+@inproceedings{wang2017gang,
+  title={GANG: Detecting fraudulent users in online social networks via guilt-by-association on directed graphs},
+  author={Wang, Binghui and Gong, Neil Zhenqiang and Fu, Hao},
+  booktitle={2017 IEEE International Conference on Data Mining (ICDM)},
+  pages={465--474},
+  year={2017},
+  organization={IEEE}
+}
