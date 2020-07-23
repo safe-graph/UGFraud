@@ -1,13 +1,18 @@
-'''
-    implementation of ZooBP with its helper functions
-'''
+"""
+    Belief Propagation for Heterogeneous Networks. A method to perform fast BP on undirected heterogeneous graphs
+    with provable convergence guarantees.
+"""
+
+from Utils.helper import timer
 from scipy.special import logsumexp
 from scipy import sparse
+from collections import defaultdict
 import numpy as np
+import networkx as nx
 
 
 def Initialize_Final_Beliefs(N1, N2, m):
-    '''
+    """
         Initialization of final beliefs
         Args:
             N1: number of users
@@ -16,13 +21,13 @@ def Initialize_Final_Beliefs(N1, N2, m):
         Returns:
             Concatenation of initialized final beliefs for users and products
         Example of return values: -0.5 0.5 -0.3 0.3 ...
-    '''
+    """
     r1 = m * (np.random.uniform(size=N1) - 0.5)
     r1 = r1.reshape(r1.shape[0], 1)
     r2 = m * (np.random.uniform(size=N2) - 0.5)
     r2 = r2.reshape(r2.shape[0], 1)
-    B1 = np.concatenate((r1, -r1), axis=1);
-    B2 = np.concatenate((r2, -r2), axis=1);
+    B1 = np.concatenate((r1, -r1), axis=1)
+    B2 = np.concatenate((r2, -r2), axis=1)
 
     temp1_B = B1.reshape((B1.shape[1] * B1.shape[0], 1))
     temp2_B = B2.reshape((B2.shape[1] * B2.shape[0], 1))
@@ -32,7 +37,7 @@ def Initialize_Final_Beliefs(N1, N2, m):
 
 
 class ZooBP:
-    def __init__(self, a_list, u_priors, p_priors, ep):
+    def __init__(self, graph, ep, H):
         """
             implementation of ZooBP in python
             Args:
@@ -46,22 +51,33 @@ class ZooBP:
             NOTE:
                 ZooBP requires consecutive ids not ids with gaps
         """
-        self.a_list = a_list
-        self.u_priors = u_priors
-        self.p_priors = p_priors
+        a_list_temp = nx.get_edge_attributes(graph, 'rating')
+        n, p = list(zip(*list(a_list_temp.keys())))
+        reversed_dict = defaultdict(list)
+        node_types_index = nx.get_node_attributes(graph, 'types')
+        for key, value in node_types_index.items():
+            reversed_dict[value].append(key)
+        self.a_list = np.array(list(zip(n, p, a_list_temp.values())), dtype=np.int32)
+        u_priors = dict()
+        p_priors = dict()
+        node_prior_index = nx.get_node_attributes(graph, 'prior')
+        for i in reversed_dict['user']:
+            u_priors[i] = node_prior_index[i]
+        for i in reversed_dict['prod']:
+            p_priors[i] = node_prior_index[i]
+        self.u_tag, user_priors = zip(*u_priors.items())
+        self.u_priors = np.array(user_priors)
+        self.p_tag, prod_priors = zip(*p_priors.items())
+        self.p_priors = np.array(prod_priors)
         self.ep = ep
-        self.init_H()
+        self.H = H
 
-    def init_H(self):
-        #  H: compatibility matrix
-        self.H = np.array([[0.5, -0.5], [-0.5, 0.5]])
-
+    @timer
     def run(self):
-        ##converts the given priors to the centered version
+        # converts the given priors to the centered version
         user_priors = self.u_priors - 0.5 * np.ones((self.u_priors.shape[0]))
         prod_priors = self.p_priors - 0.5 * np.ones((self.p_priors.shape[0]))
-
-        ##finds positive (1) and negative (2) edges and reshapes them
+        # finds positive (1) and negative (2) edges and reshapes them
         rating = self.a_list[:, 2]
         self.a_list[self.a_list[:, 2] == 2] = 2
         self.a_list[self.a_list[:, 2] == 1] = 1
@@ -74,7 +90,7 @@ class ZooBP:
         n_user = user_priors.shape[0]
         n_prod = prod_priors.shape[0]
 
-        ##computes A+ and A- as defined in section 4.7 of ZooBP
+        # computes A+ and A- as defined in section 4.7 of ZooBP
         lpos_0 = Lpos[:, 0] - np.ones(Lpos[:, 0].shape[0])
         lpos_1 = Lpos[:, 1] - np.ones(Lpos[:, 1].shape[0])
         Apos = sparse.coo_matrix((np.ones(Lpos.shape[0]), (lpos_0, lpos_1)), shape=(n_user, n_prod))
@@ -124,14 +140,16 @@ class ZooBP:
         res = 1
         while (res > 1e-8):
             Bold = B
-            ##Equations (13) and (14) in ZooBP
+            # Equations (13) and (14) in ZooBP
             B = E + logsumexp(M * Bold)
             res = np.sum(np.sum(abs(Bold - B)))
 
         B1 = B[0:2 * n_user, :]
         B2 = B[2 * n_user:, :]
         user_beliefs = B1.reshape((n_user, 2))
+        user_beliefs = dict(zip(self.u_tag, user_beliefs[:, 0]))
         prod_beliefs = B2.reshape((n_prod, 2))
+        prod_beliefs = dict(zip(self.p_tag, prod_beliefs[:, 0]))
 
         return user_beliefs, prod_beliefs
 

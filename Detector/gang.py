@@ -35,10 +35,13 @@ def semi_data(ground_truth, portion):
 
 class GANG:
 
-	def __init__(self, user_product_graph, product_user_graph, user_ground_truth,
-				 priors, mean_priors, sup_per, nor_flg, sup_flg=False):
+	def __init__(self, graph, user_ground_truth, sup_per, nor_flg, sup_flg=False):
 
 		# number of dimensions of product-user matrix
+		u_prior = node_attr_filter(graph, 'types', 'user', 'prior')
+		p_prior = node_attr_filter(graph, 'types', 'prod', 'prior')
+		r_prior = edge_attr_filter(graph, 'types', 'review', 'prior')
+		priors = [u_prior, r_prior, p_prior]
 		self.pu_dim = len(priors[0])+len(priors[2])
 		# spam belief prior vector
 		self.res_pu_spam_prior_vector = None
@@ -56,12 +59,12 @@ class GANG:
 		self.p_priors = priors[2]
 		# build prior belief vector
 		p_vector, u_vector, r_vector = [], [], []
-
 		if nor_flg:
 			# the mean value with normalization
 			u_mean, p_mean, r_mean = 0.5, 0.5, 0.5
 		else:
 			# the mean value without normalization
+			priors, mean_priors = nor_priors(priors)
 			u_mean, r_mean, p_mean = mean_priors[0], mean_priors[1], mean_priors[2]
 
 		for u in priors[0].values():
@@ -93,20 +96,19 @@ class GANG:
 		self.diag_pu_matrix = lil_matrix((self.pu_dim, self.pu_dim))
 		for id in range(0, self.pu_dim):
 			if id < len(self.p_priors):
-				self.diag_pu_matrix[id, id] = len(product_user_graph[str(id)])
+				self.diag_pu_matrix[id, id] = len(graph[str(id)])
 			else:
-				self.diag_pu_matrix[id, id] = len(user_product_graph[str(id)])
+				self.diag_pu_matrix[id, id] = len(graph[str(id)])
 
-		for p_id, reviews in product_user_graph.items():
+		for p_id in p_prior.keys():
+			for neighbor_id in graph[p_id].keys():
+				self.pu_matrix[int(p_id), int(neighbor_id)] = 1
 
-			for r in reviews:
-				self.pu_matrix[int(p_id), int(r[0])] = 1
+		for u_id in u_prior.keys():
+			for neighbor_id in graph[u_id].keys():
+				self.pu_matrix[int(u_id), int(neighbor_id)] = 1
 
-		for u_id, reviews in user_product_graph.items():
-
-			for r in reviews:
-				self.pu_matrix[int(u_id), int(r[0])] = 1
-
+	@timer
 	def pu_lbp(self, max_iters):
 		"""
 		Run the matrix form of lbp on the product-user sparse matrix
@@ -131,6 +133,7 @@ class GANG:
 			if abs(sum_0 - sum_1) < 0.1:
 				return abs(sum_0 - sum_1)
 
+	@timer
 	def classify(self):
 		"""
 		Calculate the posterior belief of three type of nodes

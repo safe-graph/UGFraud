@@ -1,6 +1,8 @@
-# contains functions that run the greedy detector for dense regions in a sparse matrix.
-# use aveDegree or sqrtWeightedAveDegree or logWeightedAveDegree on a sparse matrix,
-# which returns ((rowSet, colSet), score) for the most suspicious block.
+"""
+ contains functions that run the greedy detector for dense regions in a sparse matrix.
+ use aveDegree or sqrtWeightedAveDegree or logWeightedAveDegree on a sparse matrix,
+ which returns ((rowSet, colSet), score) for the most suspicious block.
+"""
 
 from __future__ import division
 from Detector.MinTree import MinTree

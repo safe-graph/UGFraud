@@ -1,15 +1,17 @@
 """
-	Implement the fBox detector in the paper:
-		Spotting Suspicious Link Behavior with fBox- An Adversarial Perspective, ICDM'17
+	Spotting Suspicious Link Behavior with fBox: An Adversarial Perspective.
+	An algorithm designed to catch small-scale, stealth attacks that slip below the radar.
 """
-import numpy as np
+
+from Utils.helper import timer
 from numpy.linalg import *
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import svds
+import numpy as np
 
 
 class fBox():
-	def __init__(self, user_product_graph):
+	def __init__(self, graph):
 		"""
 			fBox only takes a binary user-product graph
 		"""
@@ -25,27 +27,26 @@ class fBox():
 
 		user_idx = 0
 		product_idx = 0
-		for k, reviews in user_product_graph.items():
-			self.u_id2idx[k] = user_idx
-			self.idx2u_id[user_idx] = k
+		for k in graph.edges():
+			if k[0] not in self.u_id2idx:
+				self.u_id2idx[k[0]] = user_idx
+				self.idx2u_id[user_idx] = k[0]
+				user_idx += 1
 
-			user_idx += 1
+			if k[1] not in self.p_id2idx:
+				self.p_id2idx[k[1]] = product_idx
+				self.idx2p_id[product_idx] = k[1]
+				product_idx += 1
 
-			for t in reviews:
-				p_id = t[0]
-				if p_id not in self.p_id2idx:
-					self.p_id2idx[p_id] = product_idx
-					self.idx2p_id[product_idx] = p_id
-					product_idx += 1
-
-				row_idx.append(self.u_id2idx[k])
-				col_idx.append(self.p_id2idx[p_id])
-				data.append(1)
+			row_idx.append(self.u_id2idx[k[0]])
+			col_idx.append(self.p_id2idx[k[1]])
+			data.append(1)
 
 		self.num_users = user_idx
 		self.num_products = product_idx
 		self.matrix = csr_matrix((data, (row_idx, col_idx)), shape=(user_idx, product_idx)).asfptype()
 
+	@timer
 	def run(self, tau, k):
 		"""
 			run the algorithm.
@@ -74,7 +75,7 @@ class fBox():
 
 		for i in range(self.num_users):
 			user_d = self.out_deg[i]
-			if (self.recOutDeg[i] < thresholds[user_d]):
+			if self.recOutDeg[i] < thresholds[user_d]:
 
 				if user_d not in suspicious_users:
 					suspicious_users[user_d] = []
@@ -96,7 +97,7 @@ class fBox():
 
 		for i in range(self.num_products):
 			prod_d = self.in_deg[i]
-			if (self.recInDeg[i] < thresholds[prod_d]):
+			if self.recInDeg[i] < thresholds[prod_d]:
 				if prod_d not in suspicious_products:
 					suspicious_products[prod_d] = []
 				suspicious_products[prod_d].append(self.idx2p_id[i])

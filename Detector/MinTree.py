@@ -1,6 +1,8 @@
-# A tree data structure which stores a list of degrees and can quickly retrieve the min degree element,
-# or modify any of the degrees, each in logarithmic time. It works by creating a binary tree with the 
-# given elements in the leaves, where each internal node stores the min of its two children. 
+""" A tree data structure which stores a list of degrees and can quickly retrieve the min degree element,
+ or modify any of the degrees, each in logarithmic time. It works by creating a binary tree with the
+ given elements in the leaves, where each internal node stores the min of its two children.
+"""
+
 import math
 
 

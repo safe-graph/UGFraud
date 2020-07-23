@@ -215,15 +215,12 @@ class Node(object):
 		return diff
 
 
-class SpEagle():
-
-	def __init__(self, user_product_graph, priors, potentials, message=None, max_iters=1):
+class SpEagle:
+	def __init__(self, graph, potentials, message=None, max_iters=1):
 		""" set up the data and parameters.
 
 		Args:
-			user_product_graph: a dictionary, with key = user_id, value = (p_id, rating, label, time)
-
-			priors: a tuple of prior matrices (user_priors, product_priors, review_prior) in probability scale ([0,1])
+			graph: a networkx graph
 
 			potentials: a dictionary (key = edge_type, value=np.ndarray)
 		"""
@@ -232,9 +229,9 @@ class SpEagle():
 		self._max_iters = max_iters
 		self._message = message
 
-		self._user_priors = priors[0]
-		self._product_priors = priors[2]
-		self._review_priors = priors[1]
+		self._user_priors = node_attr_filter(graph, 'types', 'user', 'prior')
+		self._product_priors = node_attr_filter(graph, 'types', 'prod', 'prior')
+		self._review_priors = edge_attr_filter(graph, 'types', 'review', 'prior')
 
 		# create nodes on the graph. key = u_id / p_id / review_id, value = node
 		self._nodes = {}
@@ -242,15 +239,14 @@ class SpEagle():
 		self._bp_schedule = []
 
 		# add nodes and edges to build the graph
-		for u_id, reviews in user_product_graph.items():
+		for u_id in self._user_priors.keys():
 			unique_u_id = 'u' + u_id
 
 			# prior in log scale
 			self._nodes[unique_u_id] = Node(unique_u_id, self._user_priors[u_id], 'u')
 
 			# go through the reviews posted by the user
-			for t in reviews:
-				p_id = t[0]
+			for p_id in graph[u_id].keys():
 				unique_p_id = 'p' + p_id
 
 				if unique_p_id not in self._nodes:
@@ -418,8 +414,8 @@ class SpEagle():
 							heappush(q, myTuple(next, n))
 		return None
 
-
-	def run_bp(self, start_iter = 0, max_iters = -1, early_stop_at = 1, tol = 1e-3):
+	@timer
+	def run_bp(self, start_iter=0, max_iters=-1, early_stop_at=1, tol=1e-3):
 		""" run belief propagation on the graph for MaxIters iterations
 		Args:
 			start_iter: continuing from the results of previous iterations
@@ -435,8 +431,6 @@ class SpEagle():
 			max_iters = self._max_iters
 
 		for it in range(start_iter, start_iter + max_iters, 1):
-
-
 			if it % 2 == 0:
 				start = stop_at - 1
 				end = -1
@@ -461,7 +455,7 @@ class SpEagle():
 				break
 		return delta
 
-
+	@timer
 	def classify(self):
 		""" read out the id of the maximal entry of each belief vector
 		Return:
@@ -470,9 +464,7 @@ class SpEagle():
 			prodBelief: beliefs of the products
 		"""
 		userBelief= {}
-
 		reviewBelief= {}
-
 		prodBelief= {}
 
 		for k, n in self._nodes.items():
@@ -508,8 +500,6 @@ class SpEagle():
 
 		return userBelief, reviewBelief, prodBelief
 
-
-# testing SpEagle
 
 if __name__ == '__main__':
 	prefix = '/Users/dozee/Desktop/Reseach/Spam_Detection/Dataset/YelpChi/'

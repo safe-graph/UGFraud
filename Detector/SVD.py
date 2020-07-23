@@ -1,6 +1,8 @@
 """
-	Implement SVD on a User-Product graph.
+    Implement SVD on a User-Product graph.
 """
+
+from Utils.helper import *
 from sklearn import svm
 from sklearn.svm import SVC
 from scipy.sparse.linalg import svds
@@ -9,13 +11,16 @@ import numpy as np
 
 
 class SVD:
-    def __init__(self, user_product_graph, user_priors, prod_priors):
+    def __init__(self, graph):
         """set up the data
         Args:
             user_product_graph: a dictionary, with key = user_id, value = (p_id, rating, label, time)
             priors: a tuple of prior matrices (user_priors, product_priors, review_prior) in probability scale ([0,1])
             potentials: a dictionary (key = edge_type, value=np.ndarray)
         """
+        user_priors = node_attr_filter(graph, 'types', 'user', 'prior')
+        prod_priors = node_attr_filter(graph, 'types', 'prod', 'prior')
+        review_rating = edge_attr_filter(graph, 'types', 'review', 'rating')
         num_users = len(user_priors)
         num_products = len(prod_priors)
         self.user_prod_matrix = np.empty(shape=(num_users, num_products))
@@ -34,25 +39,23 @@ class SVD:
             self.prod_index[prod_id] = j
             j = j + 1
         #
-        for user_id, reviews in user_product_graph.items():
-
-            for r in reviews:
-                prod_id = r[0]
-                rating = r[1]
+        for user_id in user_priors.keys():
+            for p_id in graph[user_id].keys():
+                rating = graph.edges.get((user_id, p_id))['rating']
                 row = self.user_index[user_id]
-                column = self.prod_index[prod_id]
+                column = self.prod_index[p_id]
                 self.user_prod_matrix[row, column] = rating
 
+    @timer
     def run(self, percent):
         """
         perform SVD and return the user-product matrix in a lower dimensional space
         """
         k = int(max(np.round(min(self.user_prod_matrix.shape) * percent), 1))
         u, s, v = svds(self.user_prod_matrix, k=k)
-        print(s)
         return u
 
-    def random_split(self, user_product_graph):
+    def random_split(self, graph):
         """
             Partition user nodes into training and test set randomly.
             Args:
@@ -62,14 +65,15 @@ class SVD:
         """
         pos = set()
         node_degree = {}
-        for u_id, reviews in user_product_graph.items():
-            for v in reviews:
-                if v[2] == -1:
+        user_dict = node_attr_filter(graph, 'types', 'user', 'types')
+        for u_id in user_dict.keys():
+            for p_id in graph[u_id].keys():
+                if graph.edges.get((u_id, p_id))['label'] == 0:
                     pos.add(u_id)
                     break
-            node_degree[u_id] = len(reviews)
+            node_degree[u_id] = len(graph[u_id])
 
-        neg = set(list(user_product_graph.keys())) - pos
+        neg = set(list(user_dict.keys())) - pos
 
         # random sample positive users
         training_pos = set(np.random.choice(list(pos), int(0.5 * len(pos))).ravel())
@@ -80,7 +84,7 @@ class SVD:
 
         print("number of positive %d" % len(pos))
         print("number of negative %d" % len(neg))
-        print("number of all users %d" % len(user_product_graph))
+        print("number of all users %d" % len(user_dict))
 
         return training_pos, training_neg, test_pos, test_neg
 
@@ -98,9 +102,9 @@ class SVD:
         predictions = clf.predict(testing_data_svm)
         return predictions
 
-    def evaluate_SVD(self, svd_output, user_prod_graph):
+    def evaluate_SVD(self, svd_output, graph):
         # random_split
-        training_pos, training_neg, test_pos, test_neg = self.random_split(user_prod_graph)
+        training_pos, training_neg, test_pos, test_neg = self.random_split(graph)
         training_labels = {i: +1 for i in training_pos}
         training_labels.update({i: -1 for i in training_neg})
 
