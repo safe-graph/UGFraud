@@ -67,9 +67,10 @@ python setup.py install
 ### Requirements
 ```bash
 * python 3.6, 3.7
-* tensorflow>=1.14.0,<2.0
+* networkx >=1.10
 * numpy>=1.16.4
 * scipy>=1.2.0
+* sklearn>=0.20.0
 ```
 ### Dataset
 #### Yelp dataset
@@ -78,7 +79,7 @@ The demo data is not the intact data (`rating` and `date` information are missin
 - `product_id`: 201 number of products
 - `rating`: from 1.0 (low) to 5.0 (high)
 - `label`: -1 is not spam, 1 is spam
-- `date`: creation time
+- `date`: data creation time
 
 
 ## User Guide
@@ -90,28 +91,28 @@ python eval_fBox.py
 ```
 
 ### Running on your datasets
-Have a look at the load_data_dblp() function in utils/utils.py for an example.
+Have a look at the `data_to_network_graph.py` to convert your own data into a graph ([networkx graph](https://networkx.github.io/documentation/stable/tutorial.html#creating-a-graph).
 
-In order to use your own data, you have to provide:
-* adjacency matrices or adjlists (for GAS);
-* a feature matrix
-* a label matrix
-then split feature matrix and label matrix into testing data and training data.
-
-You can specify a dataset as follows:
-```bash
-python xx_main.py --dataset your_dataset 
+In order to use your own data, you have to provide below information at least:
+* a dict of dict:
 ```
-or by editing xx_main.py
+'user_id':{
+        'product_id':
+                {
+                'label': 1
+                }
+```
+* a dict of prior
+
+You can use `dict_to networkx(graph_dict)` function from `/Utils/helper.py` file to convert your graph_dict into a networkx graph.
+For more detial, please see `data_to_network_graph.py`.
 
 ### The structure of code
 The repository is organized as follows:
-- `algorithms/` contains the implemented models and the corresponding example code;
-- `base_models/` contains the basic models (GCN);
-- `dataset/` contains the necessary dataset files;
-- `utils/` contains:
-    * loading and splitting the data (`data_loader.py`);
-    * contains various utilities (`utils.py`).
+- `Demo/` contains the implemented models and the corresponding example code;
+- `Detector/` contains the basic models;
+- `Yelp_Data/` contains the necessary dataset files;
+- `Utils/` contains the every help functions.
 
 
 ## Implemented Models
