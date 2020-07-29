@@ -1,6 +1,7 @@
 """
-	Spotting Suspicious Link Behavior with fBox: An Adversarial Perspective.
+	'Spotting Suspicious Link Behavior with fBox: An Adversarial Perspective.'
 	An algorithm designed to catch small-scale, stealth attacks that slip below the radar.
+	Article: https://arxiv.org/pdf/1410.3915.pdf
 """
 
 from Utils.helper import timer
@@ -14,6 +15,7 @@ class fBox():
 	def __init__(self, graph):
 		"""
 			fBox only takes a binary user-product graph
+			graph: a networkx graph
 		"""
 		self.u_id2idx = {}
 		self.idx2u_id = {}

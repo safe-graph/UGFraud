@@ -6,13 +6,31 @@ import pickle as pkl
 sys.path.insert(0, os.path.abspath('../../'))
 
 if __name__ == '__main__':
-    dataset_name = 'YelpChi'
-    prefix = '../Yelp_Dataset/' + dataset_name + '/'
+    # data source
+    data_name = 'YelpChi'
+    prefix = '../Yelp_Data/' + data_name + '/'
     metadata_filename = prefix + 'metadata.gz'
+    Checksum = 'f454ce0a5f506e0be062dc8aefb76b25'
+    AUTHORIZED = False
 
-    # read the graph and node priors
-    # user_product_graph: {'201': [('0', 5.0, 1, '2011-06-08')], ... }
-    # product_user_graph: {'0': [('201', 5.0, 1, '2011-06-08'), ('202', 3.0, 1, '2011-08-30'), ...], ...}
+    # valid YelpChi data
+    with gzip.open(metadata_filename, 'rb') as f:
+        file_content = f.read()
+        f.close()
+    if Checksum == get_hash(file_content):
+        AUTHORIZED = True
+    else:
+        print('-' * 80)
+        print('The demo data is not the intact data, if you need intact data, please download from:')
+        print('http://odds.cs.stonybrook.edu/yelpchi-dataset/')
+        print('-' * 80)
+
+    """ 
+     read the graph and node priors
+     user_product_graph: {'201': [('0', 1)], ... }
+     product_user_graph: {'0': [('201', 1), ('202', 1), ...], ...}
+     
+    """
     user_product_graph, product_user_graph = read_graph_data(metadata_filename)
     user_ground_truth, review_ground_truth = create_ground_truth(user_product_graph)
 
@@ -30,7 +48,9 @@ if __name__ == '__main__':
                 new_line_2 = 0
             else:
                 new_line_2 = 1
-            if line[1] >= 4:
+            if type(line[1]) is str:
+                new_line_1 = line[1]
+            elif line[1] >= 4:
                 new_line_1 = 1
             else:
                 new_line_1 = 2
@@ -72,7 +92,7 @@ if __name__ == '__main__':
     G.edges.get(('201', '0'))
 
     # save graph data into json
-    graph_name = 'Yelp_graph_dataset.json'
+    graph_name = 'Yelp_graph_data.json'
     save_graph(graph=G, graph_name=graph_name)
 
     # load json into graph

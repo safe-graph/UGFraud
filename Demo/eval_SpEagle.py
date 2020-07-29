@@ -1,8 +1,8 @@
 from Detector.SpEagle import *
 
 if __name__ == '__main__':
-	# dataset source
-	file_name = 'Yelp_graph_dataset.json'
+	# data source
+	file_name = 'Yelp_graph_data.json'
 	G = load_graph(file_name)
 	review_ground_truth = edge_attr_filter(G, 'types', 'review', 'label')
 

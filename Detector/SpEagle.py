@@ -1,5 +1,9 @@
 """
-	Implement SpEagle on a User-Review-Product graph.
+	'Collective Opinion Spam Detection: Bridging Review Networks and Metadata'
+	Utilizing clues from all metadata (text, timestamp, rating) as well as relational data (network),
+	and harness them collectively under a unified framework to spot suspicious users and reviews,
+	as well as products targeted by spam.
+	Article: https://www.andrew.cmu.edu/user/lakoglu/pubs/15-kdd-collectiveopinionspam.pdf
 """
 
 from Utils.helper import *
@@ -16,6 +20,7 @@ class myTuple():
 	def __lt__(self, other):
 		return self._cost < other._cost
 
+
 class Node(object):
 	""" a Node object represents a node on the graph (which is also a random variable).
 
@@ -24,7 +29,8 @@ class Node(object):
 		_type: a string denoting the type of the node (User, Review, Product)
 		_prior: the node's prior distribution (\phi)
 		_num_classes: number of classes, which is also the length of the prior vector.
-		_outgoing: a dictionary of out-going messages to its neighbors (key: j, value: m_{i\to j}) where i is the current node and j is the target node.
+		_outgoing: a dictionary of out-going messages to its neighbors (key: j, value: m_{i\to j})
+		where i is the current node and j is the target node.
 		_neighbors: a list of references to its neighbors
 	"""
 
@@ -44,7 +50,8 @@ class Node(object):
 		# list of names (such as u_id, p_id, and review_id) of the neighboring nodes
 		self._neighbors = []
 
-		# a dictionary with key = neighboring node id, value = np.array() representing the message from this node to the neighbor
+		# a dictionary with key = neighboring node id, value = np.array() representing the message
+		# from this node to the neighbor
 		self._outgoing = {}
 
 		# prior in log space, with check on 0's

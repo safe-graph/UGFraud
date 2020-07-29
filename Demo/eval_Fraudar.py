@@ -1,3 +1,10 @@
+"""
+	'FRAUDAR: Bounding Graph Fraud in the Face of camouflage'
+	Spot fraudsters in the presence of camouflage or hijacked accounts. An algorithm that is camouflage-resistant,
+	provides upper bounds on the effectiveness of fraudsters, and the algorithm is effective in real-world data.
+	Article: https://bhooi.github.io/papers/fraudar_kdd16.pdf
+"""
+
 from Utils.helper import *
 from Detector.greedy import *
 import copy as cp
@@ -12,6 +19,7 @@ def listToSparseMatrix(edgesSource, edgesDest):
 	M = sparse.coo_matrix(([1] * len(edgesSource), (edgesSource, edgesDest)), shape=(m, n))
 	M1 = M > 0
 	return M1.astype('int')
+
 
 @timer
 def runFraudar(graph, multiple=0):
@@ -108,8 +116,8 @@ def runFraudar(graph, multiple=0):
 
 
 if __name__ == '__main__':
-	# dataset source
-	file_name = 'Yelp_graph_dataset.json'
+	# data source
+	file_name = 'Yelp_graph_data.json'
 	G = load_graph(file_name)
 	review_ground_truth = edge_attr_filter(G, 'types', 'review', 'label')
 

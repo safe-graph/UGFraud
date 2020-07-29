@@ -7,6 +7,7 @@ import time
 import functools
 import warnings
 
+
 def create_ground_truth(user_data):
     """Given user data, return a dictionary of labels of users and reviews
     Args:
@@ -114,6 +115,11 @@ def nor_priors(priors):
     return priors, [u_mean, r_mean, p_mean]
 
 
+def get_hash(data):
+    import hashlib
+    return hashlib.md5(data).hexdigest()
+
+
 def read_graph_data(metadata_filename, adj=False):
     """ Read the user-review-product graph from file. Can output the graph in different formats
         Args:
@@ -137,7 +143,10 @@ def read_graph_data(metadata_filename, adj=False):
                 items = line.strip().split()
                 u_id = items[0]
                 p_id = items[1]
-                rating = float(items[2])
+                if items[2] != 'None':
+                    rating = float(items[2])
+                else:
+                    rating = 'None'
                 label = int(items[3])
                 date = items[4]
 
@@ -165,7 +174,10 @@ def read_graph_data(metadata_filename, adj=False):
                 items = line.strip().split()
                 u_id = items[0]
                 p_id = items[1]
-                rating = float(items[2])
+                if items[2] != 'None':
+                    rating = float(items[2])
+                else:
+                    rating = 'None'
                 label = int(items[3])
                 date = items[4]
 
@@ -392,10 +404,11 @@ def timer(func):
     """Print the runtime of the decorated function"""
     @functools.wraps(func)
     def wrapper_timer(*args, **kwargs):
-        start_time = time.perf_counter()  # 1
+        start_time = time.perf_counter()
         value = func(*args, **kwargs)
-        end_time = time.perf_counter()  # 2
-        run_time = end_time - start_time  # 3
-        print(f"Finished {func.__name__!r} in {run_time:.4f} secs")
+        end_time = time.perf_counter()
+        run_time = end_time - start_time
+        print("Finished {} in {} secs".format(func.__name__, round(run_time, 3)))
         return value
     return wrapper_timer
+

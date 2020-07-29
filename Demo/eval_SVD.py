@@ -4,8 +4,8 @@ import os
 sys.path.insert(0, os.path.abspath('../../'))
 
 if __name__ == '__main__':
-	# dataset source
-	file_name = 'Yelp_graph_dataset.json'
+	# data source
+	file_name = 'Yelp_graph_data.json'
 	G = load_graph(file_name)
 	user_ground_truth = node_attr_filter(G, 'types', 'user', 'label')
 

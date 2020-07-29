@@ -12,10 +12,10 @@ import numpy as np
 
 
 # given a list of lists where each row is an edge, this returns the sparse matrix representation of the data.
-def listToSparseMatrix(edgesSource, edgesDest):
-	m = max(edgesSource) + 1
-	n = max(edgesDest) + 1
-	M = sparse.coo_matrix(([1] * len(edgesSource), (edgesSource, edgesDest)), shape=(m, n))
+def listToSparseMatrix(edges_source, edges_des):
+	m = max(edges_source) + 1
+	n = max(edges_des) + 1
+	M = sparse.coo_matrix(([1] * len(edges_source), (edges_source, edges_des)), shape=(m, n))
 	M1 = M > 0
 	return M1.astype('int')
 
@@ -63,10 +63,15 @@ def detect_blocks(M, detectFunc):
 	return res
 
 
-# inject a clique of size m0 by n0, with density pp. the last parameter testIdx determines the camouflage type.
-# testIdx = 1: random camouflage, with camouflage density set so each fraudster outputs approximately equal number of fraudulent and camouflage edges
-# testIdx = 2: random camouflage, with double the density as in the previous setting
-# testIdx = 3: biased camouflage, more likely to add camouflage to high degree columns
+"""
+ Inject a clique of size m0 by n0, with density pp. the last parameter testIdx determines the camouflage type.
+ testIdx = 1: random camouflage, with camouflage density set so each fraudster outputs approximately 
+ equal number of fraudulent and camouflage edges
+ testIdx = 2: random camouflage, with double the density as in the previous setting
+ testIdx = 3: biased camouflage, more likely to add camouflage to high degree columns
+"""
+
+
 def injectCliqueCamo(M, m0, n0, p, testIdx):
 	(m, n) = M.shape
 	M2 = M.copy().tolil()
@@ -242,4 +247,3 @@ def fastGreedyDecreasing(M, colWeights):
 		else:
 			finalColSet.remove(deleted[i][1])
 	return ((finalRowSet, finalColSet), bestAveScore)
-

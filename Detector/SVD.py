@@ -1,12 +1,14 @@
 """
-    Implement SVD on a User-Product graph.
+    'Singular Value Decomposition and Least Squares Solutions'
+    The Singular-Value Decomposition, or SVD for short, is a matrix decomposition method for reducing
+    a matrix to its constituent parts in order to make certain subsequent matrix calculations simpler.
+    Article: https://link.springer.com/content/pdf/10.1007/978-3-662-39778-7_10.pdf
 """
 
 from Utils.helper import *
 from sklearn import svm
 from sklearn.svm import SVC
 from scipy.sparse.linalg import svds
-
 import numpy as np
 
 
@@ -14,13 +16,10 @@ class SVD:
     def __init__(self, graph):
         """set up the data
         Args:
-            user_product_graph: a dictionary, with key = user_id, value = (p_id, rating, label, time)
-            priors: a tuple of prior matrices (user_priors, product_priors, review_prior) in probability scale ([0,1])
-            potentials: a dictionary (key = edge_type, value=np.ndarray)
+            graph: a networkx graph
         """
         user_priors = node_attr_filter(graph, 'types', 'user', 'prior')
         prod_priors = node_attr_filter(graph, 'types', 'prod', 'prior')
-        review_rating = edge_attr_filter(graph, 'types', 'review', 'rating')
         num_users = len(user_priors)
         num_products = len(prod_priors)
         self.user_prod_matrix = np.empty(shape=(num_users, num_products))

@@ -1,6 +1,7 @@
 """
-    Belief Propagation for Heterogeneous Networks. A method to perform fast BP on undirected heterogeneous graphs
-    with provable convergence guarantees.
+    ZooBP: Belief Propagation for Heterogeneous Networks.
+    A method to perform fast BP on undirected heterogeneous graphs with provable convergence guarantees.
+    Article: http://www.vldb.org/pvldb/vol10/p625-eswaran.pdf
 """
 
 from Utils.helper import timer
@@ -41,13 +42,12 @@ class ZooBP:
         """
             implementation of ZooBP in python
             Args:
-                a_list: [user_id, prod_id, rating]
-                u_priors: user priors in 2 classes: benign, spammer
-                p_priors: prod priors in 2 classes: non-targeted, targeted
+                graph: a networkx graph
                 ep: interaction strength
+                H: compatibility matrix
             Returns:
                 final_user_beliefs: centered version of final user beliefs
-                final_prod_beliefs ceneterd version of final prod beliefs
+                final_prod_beliefs centered version of final prod beliefs
             NOTE:
                 ZooBP requires consecutive ids not ids with gaps
         """
