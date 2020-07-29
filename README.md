@@ -72,18 +72,22 @@ python setup.py install
 * scipy>=1.2.0
 ```
 ### Dataset
-
-
+#### Yelp dataset
+The demo data is not the intact data (`rating` and `date` information are missing). The rating information is only used in ZooBP demo. If you need the intact date to play demo. Please download intact data from [Yelp Spam Review Dataset](http://odds.cs.stonybrook.edu/yelpchi-dataset/). The `.gz` file includes:
+- `user_id`: 38063 number of users
+- `product_id`: 201 number of products
+- `rating`: from 1.0 (low) to 5.0 (high)
+- `label`: -1 is not spam, 1 is spam
+- `date`: creation time
 
 
 ## User Guide
 
 ### Running the example code
-You can find the implemented models in `algorithms` directory. For example, you can run Player2Vec using:
+You can find the implemented models in `Demo` directory. For example, you can run fBox using:
 ```bash
-python Player2Vec_main.py 
+python eval_fBox.py 
 ```
-You can specify parameters for models when running the code.
 
 ### Running on your datasets
 Have a look at the load_data_dblp() function in utils/utils.py for an example.
