@@ -9,10 +9,10 @@ from UGFraud.Demo.eval_SVD import *
 from UGFraud.Demo.eval_ZooBP import *
 
 
-# sys.path.insert(0, os.path.abspath('../UGFraud/Demo/'))
+sys.path.insert(0, os.path.abspath('../UGFraud/Demo/'))
 # data source
 file_name = 'Yelp_graph_data.json'
-path_name = file_name
+path_name = sys.path[0] + '/' + file_name
 G = load_graph(path_name)
 user_ground_truth = node_attr_filter(G, 'types', 'user', 'label')
 review_ground_truth = edge_attr_filter(G, 'types', 'review', 'label')
