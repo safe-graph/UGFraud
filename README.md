@@ -18,7 +18,12 @@
     <a href="https://github.com/safe-graph/UGFraud/releases">
         <img alt="GitHub release" src="https://img.shields.io/github/v/release/safe-graph/UGFraud?include_prereleases">
     </a>
+    <a href="https://pypi.org/project/UGFraud/">
+        <img alt="Pypi version" src="https://img.shields.io/pypi/v/ugfraud">
+    </a>
 </p>
+
+
 
 <h3 align="center">
 <p>An Unsupervised Graph-based Toolbox for Fraud Detection

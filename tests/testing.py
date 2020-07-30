@@ -1,11 +1,13 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath('..'))
 from UGFraud.Demo.eval_fBox import *
 from UGFraud.Demo.eval_Fraudar import *
 from UGFraud.Demo.eval_GANG import *
 from UGFraud.Demo.eval_SpEagle import *
 from UGFraud.Demo.eval_SVD import *
 from UGFraud.Demo.eval_ZooBP import *
-import sys
-import os
+
 
 sys.path.insert(0, os.path.abspath('../UGFraud/Demo/'))
 # data source
