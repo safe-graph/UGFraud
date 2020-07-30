@@ -12,7 +12,7 @@ from UGFraud.Demo.eval_ZooBP import *
 # sys.path.insert(0, os.path.abspath('../UGFraud/Demo/'))
 # data source
 file_name = 'Yelp_graph_data.json'
-path_name = '../UGFraud/Demo/' + file_name
+path_name = '../Demo/' + file_name
 G = load_graph(path_name)
 user_ground_truth = node_attr_filter(G, 'types', 'user', 'label')
 review_ground_truth = edge_attr_filter(G, 'types', 'review', 'label')
@@ -109,7 +109,7 @@ print('review AUC = {}'.format(review_AUC))
 print('review AP  = {}'.format(review_AP))
 
 """
-    testing SVG
+    testing SVD
 """
 print("*" * 80)
 print("Testing SVD")
