@@ -9,7 +9,7 @@ from UGFraud.Demo.eval_SVD import *
 from UGFraud.Demo.eval_ZooBP import *
 
 
-sys.path.insert(0, os.path.abspath('../UGFraud/Demo/'))
+sys.path.insert(0, os.path.abspath('../UGFraud/UGFraud/Demo/'))
 # data source
 file_name = 'Yelp_graph_data.json'
 path_name = sys.path[0] + '/' + file_name
