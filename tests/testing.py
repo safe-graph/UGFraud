@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from UGFraud.Demo.eval_fBox import *
 from UGFraud.Demo.eval_Fraudar import *
 from UGFraud.Demo.eval_GANG import *
