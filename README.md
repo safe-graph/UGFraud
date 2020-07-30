@@ -5,28 +5,31 @@
     </a>
     <br>
 <p>
-<!-- <p align="center">
-    <a href="https://travis-ci.org/github/safe-graph/DGFraud">
-        <img alt="PRs Welcome" src="https://travis-ci.org/safe-graph/DGFraud.svg?branch=master">
+<p align="center">
+    <a href="https://travis-ci.org/github/safe-graph/UGFraud">
+        <img alt="Building" src="https://travis-ci.org/safe-graph/UGFraud.svg?branch=master">
     </a>
-    <a href="https://github.com/safe-graph/DGFraud/blob/master/LICENSE">
-        <img alt="GitHub" src="https://img.shields.io/github/license/safe-graph/DGFraud">
+    <a href="https://github.com/safe-graph/UGFraud/blob/master/LICENSE">
+        <img alt="GitHub" src="https://img.shields.io/github/license/safe-graph/UGFraud">
     </a>
-    <a href="https://github.com/safe-graph/DGFraud/archive/master.zip">
-        <img alt="Downloads" src="https://img.shields.io/github/downloads/safe-graph/DGFraud/total">
+    <a href="https://github.com/safe-graph/UGFraud/archive/master.zip">
+        <img alt="Downloads" src="https://img.shields.io/github/downloads/safe-graph/UGFraud/total">
     </a>
-    <a href="https://github.com/safe-graph/DGFraud/releases">
-        <img alt="GitHub release" src="https://img.shields.io/github/v/release/safe-graph/DGFraud?include_prereleases">
+    <a href="https://github.com/safe-graph/UGFraud/releases">
+        <img alt="GitHub release" src="https://img.shields.io/github/v/release/safe-graph/UGFraud?include_prereleases">
     </a>
-</p> -->
+</p>
 
 <h3 align="center">
 <p>An Unsupervised Graph-based Toolbox for Fraud Detection
 </h3>
 
 **Introduction:** 
+UGFraud is an unsupervised graph-based fraud detection toolbox that integrates several state-of-the-art graph-based fraud detection algorithms. It can be applied to bipartite graphs (e.g., user-product graph), and it can estimate the suspiciousness of both nodes and edges. The implemented models can be found [here](#implemented-models).
 
+The toolbox incorporates the Markov Random Field (MRF)-based algorithm, dense-block detection-based algorithm, and SVD-based algorithm. For MRF-based algorithms, the users only need the graph structure and the prior suspicious score of the nodes as the input. For other algorithms, the graph structure is the only input.
 
+Meanwhile, we have a [deep graph-based fraud detection toolbox](https://github.com/safe-graph/DGFraud) which implements state-of-the-art graph neural network-based fraud detectors.
 
 We welcome contributions on adding new fraud detectors and extending the features of the toolbox. Some of the planned features are listed in [TODO list](#todo-list). 
 
@@ -59,11 +62,20 @@ If you use the toolbox in your project, please cite the [paper](https://arxiv.or
 
 
 ## Installation
+You can install UGFraud from `pypi`:
+
 ```bash
-git clone https://github.com/safe-graph/DGFraud.git
-cd DGFraud
+pip install UGFraud
+```
+
+or download and install from `github`:
+
+```bash
+git clone https://github.com/safe-graph/UGFraud.git
+cd UGFraud
 python setup.py install
 ```
+
 ### Requirements
 ```bash
 * python 3.6, 3.7
@@ -72,6 +84,7 @@ python setup.py install
 * scipy>=1.2.0
 * sklearn>=0.20.0
 ```
+
 ### Dataset
 #### Yelp dataset
 The demo data is not the intact data (`rating` and `date` information are missing). The rating information is only used in ZooBP demo. If you need the intact date to play demo. Please download intact data from [Yelp Spam Review Dataset](http://odds.cs.stonybrook.edu/yelpchi-dataset/). The `.gz` file includes:
@@ -129,14 +142,14 @@ The repository is organized as follows:
 
 
 ## Model Comparison
-| Model  | Application  | Graph Type  |
-|-------|--------|--------|
-| **SpEagle** | Review Spam | Tripartite  |
-| **GANG** | Social Sybil  | Bipartite |
-| **fBox** | Social Fraudster  | Bipartite | 
-| **Fraudar** |  Social Fraudster | Bipartite |
-| **ZooBP** | E-commerce Fraud | Tripartite | 
-| **SVD** | Dimension Reduction  | Bipartite |
+| Model  | Application  | Graph Type  | Model Type  |
+|-------|--------|--------|-------|
+| **SpEagle** | Review Spam | Tripartite  | MRF  |
+| **GANG** | Social Sybil  | Bipartite |  MRF    |
+| **fBox** | Social Fraudster  | Bipartite |  SVD |
+| **Fraudar** |  Social Fraudster | Bipartite | Dense-block  |
+| **ZooBP** | E-commerce Fraud | Tripartite | MRF   |
+| **SVD** | Dimension Reduction  | Bipartite |  SVD  |
 <!--| **HACUD** |  |  |   |-->
 <!--| **GraphConsis** | Opinion Fraud  | Homogeneous   | GraphSAGE |-->
 
