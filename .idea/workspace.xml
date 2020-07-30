@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c81d7ed9-9dbf-445b-a2bc-cbf2bef57ed4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Demo/.ipynb_checkpoints/Yelp_graph_dataset-checkpoint.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/.ipynb_checkpoints/data_to_network_graph-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/Yelp_graph_data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/data_to_network_graph.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/eval_Fraudar.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/eval_GANG.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/eval_Prior.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/eval_SVD.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/eval_SpEagle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/eval_ZooBP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Demo/eval_fBox.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/.ipynb_checkpoints/eval_Fraudar-checkpoint.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/GANG.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/MinTree.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/SVD.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/SpEagle.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/ZooBP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/fBox.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Detector/greedy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Utils/helper.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yelp_Data/YelpChi/metadata.gz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yelp_Data/YelpChi/priors.pkl" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1dUIFgPnDEf1Qjcs6siGqNkOymn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Demo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.data_to_network_graph (1)">
+    <configuration name="data_to_network_graph (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="UGFraud" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UGFraud/Demo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UGFraud/Demo/data_to_network_graph.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="data_to_network_graph" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="UGFraud" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/data_to_network_graph.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="eval_ZooBP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="UGFraud" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/eval_ZooBP.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testing (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="UGFraud" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/UGFraud/Demo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UGFraud/Demo/testing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="UGFraud" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Demo" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Demo/testing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.data_to_network_graph (1)" />
+        <item itemvalue="Python.testing (1)" />
+        <item itemvalue="Python.testing" />
+        <item itemvalue="Python.data_to_network_graph" />
+        <item itemvalue="Python.eval_ZooBP" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c81d7ed9-9dbf-445b-a2bc-cbf2bef57ed4" name="Default Changelist" comment="" />
+      <created>1592473142567</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1592473142567</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="354" y="120" key="#Inspections" timestamp="1596001936268">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="354" y="120" key="#Inspections/0.23.1440.823@0.23.1440.823" timestamp="1596001936268" />
+    <state x="259" y="188" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595252185262">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="259" y="188" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.823@0.23.1440.823" timestamp="1595252185262" />
+    <state x="401" y="63" key="#eval_ZooBP" timestamp="1595076774564">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="401" y="63" key="#eval_ZooBP/0.0.1440.900@0.0.1440.900" timestamp="1595076774564" />
+    <state x="443" y="95" key="#xdebugger.evaluate" timestamp="1595144301220">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="443" y="95" key="#xdebugger.evaluate/0.23.1440.823@0.23.1440.823" timestamp="1595144301220" />
+    <state width="1419" height="239" key="GridCell.Tab.0.bottom" timestamp="1596129163163">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="277" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1595519819557" />
+    <state width="1419" height="239" key="GridCell.Tab.0.bottom/0.23.1440.823@0.23.1440.823" timestamp="1596129163163" />
+    <state width="1419" height="239" key="GridCell.Tab.0.center" timestamp="1596129163163">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="277" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1595519819556" />
+    <state width="1419" height="239" key="GridCell.Tab.0.center/0.23.1440.823@0.23.1440.823" timestamp="1596129163163" />
+    <state width="1419" height="239" key="GridCell.Tab.0.left" timestamp="1596129163162">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="277" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1595519819556" />
+    <state width="1419" height="239" key="GridCell.Tab.0.left/0.23.1440.823@0.23.1440.823" timestamp="1596129163162" />
+    <state width="1419" height="239" key="GridCell.Tab.0.right" timestamp="1596129163163">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="277" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1595519819557" />
+    <state width="1419" height="239" key="GridCell.Tab.0.right/0.23.1440.823@0.23.1440.823" timestamp="1596129163163" />
+    <state width="1419" height="258" key="GridCell.Tab.1.bottom" timestamp="1596040844706">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="258" key="GridCell.Tab.1.bottom/0.23.1440.823@0.23.1440.823" timestamp="1596040844706" />
+    <state width="1419" height="258" key="GridCell.Tab.1.center" timestamp="1596040844705">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="258" key="GridCell.Tab.1.center/0.23.1440.823@0.23.1440.823" timestamp="1596040844705" />
+    <state width="1419" height="258" key="GridCell.Tab.1.left" timestamp="1596040844705">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="258" key="GridCell.Tab.1.left/0.23.1440.823@0.23.1440.823" timestamp="1596040844705" />
+    <state width="1419" height="258" key="GridCell.Tab.1.right" timestamp="1596040844706">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state width="1419" height="258" key="GridCell.Tab.1.right/0.23.1440.823@0.23.1440.823" timestamp="1596040844706" />
+    <state x="221" y="104" key="SettingsEditor" timestamp="1596002537567">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1595078970373" />
+    <state x="221" y="104" key="SettingsEditor/0.23.1440.823@0.23.1440.823" timestamp="1596002537567" />
+    <state x="261" y="88" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1595994176892">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="261" y="88" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1440.823@0.23.1440.823" timestamp="1595994176892" />
+    <state x="385" y="170" width="670" height="676" key="search.everywhere.popup" timestamp="1596123913798">
+      <screen x="0" y="23" width="1440" height="823" />
+    </state>
+    <state x="385" y="170" width="670" height="676" key="search.everywhere.popup/0.23.1440.823@0.23.1440.823" timestamp="1596123913798" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/UGFraud/Detector/GANG.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

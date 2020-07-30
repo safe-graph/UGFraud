@@ -1,0 +1,8 @@
+*.pyc
+**/*.ipynb_checkpoints/
+**/*.ipynb/
+**/__pycache__
+/Detector/__pycache__
+/Utils/__pycache__
+__pycache__
+__pycache__/
