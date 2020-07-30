@@ -1,12 +1,16 @@
 import setuptools
+from os import path
+from io import open  # for Python 2 and 3 compatibility
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+this_directory = path.abspath(path.dirname(__file__))
 
 # read the contents of requirements.txt
 with open(path.join(this_directory, 'requirements.txt'),
           encoding='utf-8') as f:
     requirements = f.read().splitlines()
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setuptools.setup(
     name="UGFraud", # Replace with your own username
