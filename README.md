@@ -49,6 +49,7 @@ If you use the toolbox in your project, please cite the [paper](https://arxiv.or
 ```
 
 **Useful Resources**
+- [DGFraud: A Deep Graph-based Fraud Detection Toolbox](https://github.com/safe-graph/DGFraud)
 - [Graph-based Fraud Detection Paper List](https://github.com/safe-graph/graph-fraud-detection-papers) 
 - [Awesome Fraud Detection Papers](https://github.com/benedekrozemberczki/awesome-fraud-detection-papers)
 - [Attack and Defense Papers on Graph Data](https://github.com/safe-graph/graph-adversarial-learning-literature)
@@ -81,18 +82,8 @@ cd UGFraud
 python setup.py install
 ```
 
-### Requirements
-```bash
-* python 3.6, 3.7
-* networkx >=1.10
-* numpy>=1.16.4
-* scipy>=1.2.0
-* sklearn>=0.20.0
-```
-
 ### Dataset
-#### Yelp dataset
-The demo data is not the intact data (`rating` and `date` information are missing). The rating information is only used in ZooBP demo. If you need the intact date to play demo. Please download intact data from [Yelp Spam Review Dataset](http://odds.cs.stonybrook.edu/yelpchi-dataset/). The `.gz` file includes:
+The demo data is not the intact data (`rating` and `date` information are missing). The rating information is only used in ZooBP demo. If you need the intact date to play demo, please email [bdscsafegraph@gmail.com](mailto:bdscsafegraph@gmail.com) to download the intact data from [Yelp Spam Review Dataset](http://odds.cs.stonybrook.edu/yelpchi-dataset/). The `metadata.gz` file in `/UGFraud/Yelp_Data/YelpChi` includes:
 - `user_id`: 38063 number of users
 - `product_id`: 201 number of products
 - `rating`: from 1.0 (low) to 5.0 (high)
@@ -103,15 +94,15 @@ The demo data is not the intact data (`rating` and `date` information are missin
 ## User Guide
 
 ### Running the example code
-You can find the implemented models in `Demo` directory. For example, you can run fBox using:
+You can find the implemented models in `/UGFraud/Demo` directory. For example, you can run fBox using:
 ```bash
 python eval_fBox.py 
 ```
 
 ### Running on your datasets
-Have a look at the `data_to_network_graph.py` to convert your own data into a graph ([networkx graph](https://networkx.github.io/documentation/stable/tutorial.html#creating-a-graph).
+Have a look at the `/UGFraud/Demo/data_to_network_graph.py` to convert your own data into a graph ([networkx graph](https://networkx.github.io/documentation/stable/tutorial.html#creating-a-graph).
 
-In order to use your own data, you have to provide below information at least:
+In order to use your own data, you have to provide the following information at least:
 * a dict of dict:
 ```
 'user_id':{
@@ -126,7 +117,7 @@ You can use `dict_to networkx(graph_dict)` function from `/Utils/helper.py` file
 For more detial, please see `data_to_network_graph.py`.
 
 ### The structure of code
-The repository is organized as follows:
+The `/UGFraud` repository is organized as follows:
 - `Demo/` contains the implemented models and the corresponding example code;
 - `Detector/` contains the basic models;
 - `Yelp_Data/` contains the necessary dataset files;
@@ -155,12 +146,11 @@ The repository is organized as follows:
 | **Fraudar** |  Social Fraudster | Bipartite | Dense-block  |
 | **ZooBP** | E-commerce Fraud | Tripartite | MRF   |
 | **SVD** | Dimension Reduction  | Bipartite |  SVD  |
-<!--| **HACUD** |  |  |   |-->
-<!--| **GraphConsis** | Opinion Fraud  | Homogeneous   | GraphSAGE |-->
+
 
 ## TODO List
 - Homogeneous graph implementation
 
 
 ## How to Contribute
-You are welcomed to contribute to this open-source toolbox. Currently, you can create issues or send email to [ytongdou@gmail.com](mailto:ytongdou@gmail.com) for enquiry.
+You are welcomed to contribute to this open-source toolbox. Currently, you can create issues or send email to [bdscsafegraph@gmail.com](mailto:bdscsafegraph@gmail.com) for enquiry.
