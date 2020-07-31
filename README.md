@@ -12,18 +12,13 @@
     <a href="https://github.com/safe-graph/UGFraud/blob/master/LICENSE">
         <img alt="GitHub" src="https://img.shields.io/github/license/safe-graph/UGFraud">
     </a>
-    <a href="https://github.com/safe-graph/UGFraud/archive/master.zip">
-        <img alt="Downloads" src="https://img.shields.io/github/downloads/safe-graph/UGFraud/total">
-    </a>
-    <a href="https://github.com/safe-graph/UGFraud/releases">
-        <img alt="GitHub release" src="https://img.shields.io/github/v/release/safe-graph/UGFraud?include_prereleases">
+    <a href="https://pepy.tech/project/ugfraud">
+        <img alt="Downloads" src="https://pepy.tech/badge/ugfraud">
     </a>
     <a href="https://pypi.org/project/UGFraud/">
         <img alt="Pypi version" src="https://img.shields.io/pypi/v/ugfraud">
     </a>
 </p>
-
-
 
 <h3 align="center">
 <p>An Unsupervised Graph-based Toolbox for Fraud Detection
@@ -153,4 +148,4 @@ The `/UGFraud` repository is organized as follows:
 
 
 ## How to Contribute
-You are welcomed to contribute to this open-source toolbox. Currently, you can create issues or send email to [bdscsafegraph@gmail.com](mailto:bdscsafegraph@gmail.com) for enquiry.
+You are welcomed to contribute to this open-source toolbox. Currently, you can create issues or send email to [bdscsafegraph@gmail.com](mailto:bdscsafegraph@gmail.com) for inquiry.
