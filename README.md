@@ -1,7 +1,7 @@
 <p align="center">
     <br>
     <a href="https://image.flaticon.com/icons/svg/1671/1671517.svg">
-        <img src="https://github.com/safe-graph/UGFraud/blob/master/UGFraud_logo.png" width="500"/>
+        <img src="https://github.com/safe-graph/UGFraud/blob/master/UGFraud_logo.png" width="400"/>
     </a>
     <br>
 <p>
