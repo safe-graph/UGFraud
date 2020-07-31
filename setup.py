@@ -14,7 +14,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="UGFraud", # Replace with your own username
-    version="0.0.1",
+    version="0.1.0",
     author="Yingtong Dou, Chen Wang, Sihong Xie, Guixiang Ma, and UIC BDSC Lab",
     author_email="bdscsafegraph@gmail.com",
     description="An Unsupervised Graph-based Toolbox for Fraud Detection",
@@ -26,8 +26,9 @@ setuptools.setup(
                 'data mining', 'security'],
     packages=setuptools.find_packages(),
     classifiers=[
-        'Programming Language :: Python :: 3',
-        'Development Status :: 4 - Beta',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Education',
         'Intended Audience :: Financial and Insurance Industry',
         'Intended Audience :: Science/Research',
