@@ -123,12 +123,12 @@ The `/UGFraud` repository is organized as follows:
 
 | Model  | Paper  | Venue  | Reference  |
 |-------|--------|--------|--------|
-| **SpEagle** | [Collective Opinion Spam Detection: Bridging Review Networks and Metadata](https://www.andrew.cmu.edu/user/lakoglu/pubs/15-kdd-collectiveopinionspam.pdf)  | KDD 2015  | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/speagle.txt) |
-| **GANG** | [GANG: Detecting Fraudulent Users in Online Social Networks via Guilt-by-Association on Directed Graph](https://ieeexplore.ieee.org/document/8215519)  | ICDM 2017  | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/gang.txt)|
-| **fBox** | [Spotting Suspicious Link Behavior with fBox: An Adversarial Perspective](https://arxiv.org/pdf/1410.3915.pdf)  | ICDM 2014 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/fbox.txt) |
-| **Fraudar** | [FRAUDAR: Bounding Graph Fraud in the Face of Camouflage](https://bhooi.github.io/papers/fraudar_kdd16.pdf)  | KDD 2016 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/fraudar.txt) |
-| **ZooBP** | [ZooBP: Belief Propagation for Heterogeneous Networks](http://www.vldb.org/pvldb/vol10/p625-eswaran.pdf)  | VLDB 2017 | [BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/zoobp.txt)  |
-| **SVD** | [Singular value decomposition and least squares solutions](https://link.springer.com/content/pdf/10.1007/978-3-662-39778-7_10.pdf)  | - |[BibTex](https://github.com/safe-graph/DGFraud/blob/master/reference/svd.txt) |
+| **SpEagle** | [Collective Opinion Spam Detection: Bridging Review Networks and Metadata](https://www.andrew.cmu.edu/user/lakoglu/pubs/15-kdd-collectiveopinionspam.pdf)  | KDD 2015  | [BibTex](https://github.com/safe-graph/UGFraud/blob/master/reference/speagle.txt) |
+| **GANG** | [GANG: Detecting Fraudulent Users in Online Social Networks via Guilt-by-Association on Directed Graph](https://ieeexplore.ieee.org/document/8215519)  | ICDM 2017  | [BibTex](https://github.com/safe-graph/UGFraud/blob/master/reference/gang.txt)|
+| **fBox** | [Spotting Suspicious Link Behavior with fBox: An Adversarial Perspective](https://arxiv.org/pdf/1410.3915.pdf)  | ICDM 2014 | [BibTex](https://github.com/safe-graph/UGFraud/blob/master/reference/fbox.txt) |
+| **Fraudar** | [FRAUDAR: Bounding Graph Fraud in the Face of Camouflage](https://bhooi.github.io/papers/fraudar_kdd16.pdf)  | KDD 2016 | [BibTex](https://github.com/safe-graph/UGFraud/blob/master/reference/fraudar.txt) |
+| **ZooBP** | [ZooBP: Belief Propagation for Heterogeneous Networks](http://www.vldb.org/pvldb/vol10/p625-eswaran.pdf)  | VLDB 2017 | [BibTex](https://github.com/safe-graph/UGFraud/blob/master/reference/zoobp.txt)  |
+| **SVD** | [Singular value decomposition and least squares solutions](https://link.springer.com/content/pdf/10.1007/978-3-662-39778-7_10.pdf)  | - |[BibTex](https://github.com/safe-graph/UGFraud/blob/master/reference/svd.txt) |
 | **Prior** | Evaluating suspicioueness based on prior information  | - |  - |
 
 
