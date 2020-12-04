@@ -14,7 +14,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="UGFraud", # Replace with your own username
-    version="0.1.1.1",
+    version="0.1.1.2",
     author="Yingtong Dou, Chen Wang, Sihong Xie, Guixiang Ma, and UIC BDSC Lab",
     author_email="bdscsafegraph@gmail.com",
     description="An Unsupervised Graph-based Toolbox for Fraud Detection",
