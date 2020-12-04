@@ -6,7 +6,8 @@ import random
 import pickle as pkl
 sys.path.insert(0, os.path.abspath('../../'))
 
-if __name__ == '__main__':
+
+def data_to_network_graph():
     # data source
     data_name = 'YelpChi'
     prefix = '../Yelp_Data/' + data_name + '/'
@@ -30,7 +31,7 @@ if __name__ == '__main__':
      read the graph and node priors
      user_product_graph: {'201': [('0', 1)], ... }
      product_user_graph: {'0': [('201', 1), ('202', 1), ...], ...}
-     
+
     """
     user_product_graph, product_user_graph = read_graph_data(metadata_filename)
     user_ground_truth, review_ground_truth = create_ground_truth(user_product_graph)
@@ -99,3 +100,7 @@ if __name__ == '__main__':
 
     # load json into graph
     loaded_G = load_graph(graph_name)
+
+
+if __name__ == '__main__':
+    data_to_network_graph()

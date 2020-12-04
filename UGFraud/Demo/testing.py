@@ -4,6 +4,7 @@ from UGFraud.Demo.eval_GANG import *
 from UGFraud.Demo.eval_SpEagle import *
 from UGFraud.Demo.eval_SVD import *
 from UGFraud.Demo.eval_ZooBP import *
+from UGFraud.Demo.data_to_network_graph import *
 import sys
 import os
 
@@ -11,7 +12,11 @@ sys.path.insert(0, os.path.abspath('../../'))
 
 # data source
 file_name = 'Yelp_graph_data.json'
-G = load_graph(file_name)
+try:
+    G = load_graph(file_name)
+except FileNotFoundError:
+    data_to_network_graph()
+    G = load_graph(file_name)
 user_ground_truth = node_attr_filter(G, 'types', 'user', 'label')
 review_ground_truth = edge_attr_filter(G, 'types', 'review', 'label')
 

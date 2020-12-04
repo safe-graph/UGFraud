@@ -14,16 +14,20 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="UGFraud", # Replace with your own username
-    version="0.1.0",
+    version="0.1.1",
     author="Yingtong Dou, Chen Wang, Sihong Xie, Guixiang Ma, and UIC BDSC Lab",
     author_email="bdscsafegraph@gmail.com",
     description="An Unsupervised Graph-based Toolbox for Fraud Detection",
     long_description=long_description,
+    include_package_data=True,
     long_description_content_type="text/markdown",
     url="https://github.com/safe-graph/UGFraud",
     download_url='https://github.com/safe-graph/UGFraud/archive/master.zip',
     keywords=['fraud detection', 'anomaly detection', 'graph algorithm',
                 'data mining', 'security'],
+    package_data={
+        # If any package contains *.txt or *.rst files, include them:
+        "UGFraud": ["Yelp_Data/YelpChi/*.gz", "Yelp_Data/YelpChi/*.pkl"]},
     packages=setuptools.find_packages(),
     classifiers=[
         'Programming Language :: Python :: 3.6',

@@ -1,4 +1,4 @@
-from UGFraud.Utils.helper import *
+from Utils.helper import *
 
 if __name__ == '__main__':
 	# data source
