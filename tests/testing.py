@@ -7,7 +7,7 @@ from UGFraud.Demo.eval_GANG import *
 from UGFraud.Demo.eval_SpEagle import *
 from UGFraud.Demo.eval_SVD import *
 from UGFraud.Demo.eval_ZooBP import *
-from UGFraud.Demo.data_to_network_graph
+from UGFraud.Demo import data_to_network_graph
 
 
 sys.path.insert(0, os.path.abspath('../UGFraud/UGFraud/Demo/'))
