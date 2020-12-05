@@ -17,7 +17,7 @@ file_name = 'Yelp_graph_data.json'
 try:
     G = load_graph(file_name)
 except FileNotFoundError:
-    data_path = '../UGFraud/Yelp_Data/'
+    data_path = 'UGFraud/Yelp_Data/'
     data_to_network_graph(data_path)
     G = load_graph(file_name)
 user_ground_truth = node_attr_filter(G, 'types', 'user', 'label')
