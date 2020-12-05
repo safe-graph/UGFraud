@@ -7,7 +7,13 @@ from UGFraud.Demo.eval_GANG import *
 from UGFraud.Demo.eval_SpEagle import *
 from UGFraud.Demo.eval_SVD import *
 from UGFraud.Demo.eval_ZooBP import *
+<<<<<<< HEAD
 from UGFraud.Demo.demo_pre import *
+||||||| merged common ancestors
+from UGFraud.data_to_network_graph
+=======
+from UGFraud.Demo.data_to_network_graph import *
+>>>>>>> a148378d98189c2f46ed82a0f254d4acd0777672
 
 
 sys.path.insert(0, os.path.abspath('../UGFraud/Demo/'))
