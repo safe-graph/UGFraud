@@ -6,7 +6,7 @@
 """
 
 from UGFraud.Utils.helper import *
-from UGFraud.Detector.greedy import *
+from UGFraud.Detector.Fraudar import *
 import copy as cp
 import sys
 import os
