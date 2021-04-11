@@ -95,7 +95,7 @@ python eval_fBox.py
 ```
 
 ### Running on your datasets
-Have a look at the `/UGFraud/Demo/data_to_network_graph.py` to convert your own data into a graph ([networkx graph](https://networkx.github.io/documentation/stable/tutorial.html#creating-a-graph).
+Have a look at the `/UGFraud/Demo/data_to_network_graph.py` to convert your data into the [networkx](https://networkx.github.io/documentation/stable/tutorial.html#creating-a-graph) graph.
 
 In order to use your own data, you have to provide the following information at least:
 * a dict of dict:
@@ -109,7 +109,7 @@ In order to use your own data, you have to provide the following information at 
 * a dict of prior
 
 You can use `dict_to networkx(graph_dict)` function from `/Utils/helper.py` file to convert your graph_dict into a networkx graph.
-For more detial, please see `data_to_network_graph.py`.
+For more details, please see `data_to_network_graph.py`.
 
 ### The structure of code
 The `/UGFraud` repository is organized as follows:
