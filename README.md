@@ -89,13 +89,13 @@ The demo data is not the intact data (`rating` and `date` information are missin
 ## User Guide
 
 ### Running the example code
-You can find the implemented models in `/UGFraud/Demo` directory. For example, you can run fBox using:
+You can find the implemented models in `/UGFraud/Demo/` directory. For example, you can run fBox using:
 ```bash
 python eval_fBox.py 
 ```
 
 ### Running on your datasets
-Have a look at the `/UGFraud/Demo/data_to_network_graph.py` to convert your data into the [networkx](https://networkx.github.io/documentation/stable/tutorial.html#creating-a-graph) graph.
+Check out the `data_to_network_graph` function in `/UGFraud/Demo/demo_pre.py` to convert your data into the [networkx](https://networkx.github.io/documentation/stable/tutorial.html#creating-a-graph) graph.
 
 In order to use your own data, you have to provide the following information at least:
 * a dict of dict:
