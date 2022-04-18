@@ -44,6 +44,7 @@ If you use the toolbox in your project, please cite the [paper](https://arxiv.or
 ```
 
 **Useful Resources**
+- [PyGOD: A Python Library for Graph Outlier Detection (Anomaly Detection)](https://github.com/pygod-team/pygod)
 - [DGFraud: A Deep Graph-based Fraud Detection Toolbox](https://github.com/safe-graph/DGFraud)
 - [Graph-based Fraud Detection Paper List](https://github.com/safe-graph/graph-fraud-detection-papers) 
 - [Awesome Fraud Detection Papers](https://github.com/benedekrozemberczki/awesome-fraud-detection-papers)
